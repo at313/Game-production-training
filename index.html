@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>CocosbanGame</title>
+    <title>Reflection_Fighter</title>
     <script type="text/javascript" src="cocos2d-js-v3.11.js" charset="UTF-8"></script>
-    <script type="text/javascript" src="src/resource.js" charset="UTF-8"></script>
-    <script type="text/javascript" src="src/app.js" charset="UTF-8"></script>
-    <script type="text/javascript" src="src/clear.js" charset="UTF-8"></script>
-    <script type="text/javascript" src="src/title.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="prt_src/resource_prt.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="prt_src/app_prt.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="prt_src/resalt_prt.js" charset="UTF-8"></script>
 </head>
 <body>
     <canvas id="gameCanvas" ></canvas>
@@ -18,12 +17,12 @@
                    cc.view.adjustViewPort(true);
 
                   //画面の縦横比をドットで指定する  ターゲットの解像度を指定し、ゲームキャンバスをブラウザのウインドサイズに合わせる
-                  cc.view.setDesignResolutionSize(480,320,  cc.ResolutionPolicy.SHOW_ALL);
+                  cc.view.setDesignResolutionSize(211,375,  cc.ResolutionPolicy.SHOW_ALL);
                   // 表示領域がリサイズされた場合、自動的にプログラムの画面をリサイズさせる
                   cc.view.resizeWithBrowserSize(true);
 
-                  cc.LoaderScene.preload(g_resources, function () {
-                       cc.director.runScene(new titleScene());
+                  cc.LoaderScene.preload(g_resources_prt, function () {
+                       cc.director.runScene(new TestScene());
                   }, this);
               };
               cc.game.run("gameCanvas");
