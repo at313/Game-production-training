@@ -7,6 +7,11 @@ var ball_p;
 // プレイヤー表示用変数
 var pl_p;
 
+// 当たり判定用変数
+var plBox_p;
+var ballBox_p;
+var reflectionBox_p;
+
 // 反射範囲表示用変数
 var reflection_p;
 
@@ -19,6 +24,9 @@ var life_p = 2;
 // 球の移動速度用変数
 var ball_spd_x = 1;
 var ball_spd_y = 1;
+
+// タッチしているかどうかの判定
+var touching_p = false;
 
 var TestScene = cc.Scene.extend({
   onEnter:function () {
@@ -52,14 +60,14 @@ var prt_game = cc.Layer.extend({
     var m_p = 0;
     var timelabel_p = new cc.LabelTTF("TIME - " + "00" + ":" + "00", "Arial", 10);
     var timelayer_p = cc.Layer.create();
-    timelabel_p.setPosition(cc.p(size.width * 0.15, size.height * 0.97));
+    timelabel_p.setPosition(cc.p(size.width * 0.18, size.height * 0.97));
     timelayer_p.addChild(timelabel_p);
     this.addChild(timelayer_p);
 
     // 残機ラベル表示 ----------------------------------------------------------------
     var lifelabel_p = new cc.LabelTTF("LIFE - " + life_p, "Arial", 10);
     var lifelayer_p = cc.Layer.create();
-    lifelabel_p.setPosition(cc.p(size.width * 0.1, size.height * 0.92));
+    lifelabel_p.setPosition(cc.p(size.width * 0.13, size.height * 0.92));
     lifelayer_p.addChild(lifelabel_p);
     this.addChild(lifelayer_p);
 
@@ -96,19 +104,43 @@ var prt_game = cc.Layer.extend({
     pllayer_p.addChild(pl_p);
     this.addChild(pllayer_p);
 
+    // タッチイベントのリスナー追加
+    cc.eventManager.addListener(touchListener, this);
+
   },
   update: function(dt){
+    // プレイヤー当たり判定設定
+    plBox_p = pl_p.getBoundingBox();
+    // 球当たり判定設定
+    ballBox_p = ball_p.getBoundingBox();
+    // 反射範囲当たり判定設定
+    reflectionBox_p = reflection_p.getBoundingBox();
     // 球の移動処理 -----------------------------------------------------------------
     if(ball_p.getPositionX() > size.width -2.5 || ball_p.getPositionX() < 2.5) ball_spd_x *= -1;
     if(ball_p.getPositionY() > size.height - 46.5 || ball_p.getPositionY() < 2.5) ball_spd_y *= -1;
     ball_p.setPosition(cc.p(ball_p.getPositionX() + ball_spd_x, ball_p.getPositionY() + ball_spd_y));
-  }
+  },
+
 });
 
 var touchListener = cc.EventListener.create({
   event: cc.EventListener.TOUCH_ONE_BY_ONE,
   swallowTouches: true,
-  onTouchBegan: function(touch, event){ return true; },
-  onTouchMoved: function(touch, event){},
-  onTouchEnded: function(touch, event){}
+  onTouchBegan: function(touch, event){
+    if (cc.rectContainsPoint(plBox_p, touch.getLocation())) {
+      touching_p = true;
+    }
+    return true; },
+  onTouchMoved: function(touch, event){
+    if(touching_p)
+    pl_p.setPosition(cc.p(touch.getLocationX(), pl_p.getPositionY()));
+  },
+  onTouchEnded: function(touch, event){
+    if(touching_p)
+    touching_p = false;
+    if (cc.rectContainsRect(reflectionBox_p, ballBox_p)) {
+      ball_spd_x *= -1;
+      ball_spd_y *= -1;
+    }
+  }
 });
