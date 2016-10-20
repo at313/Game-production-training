@@ -88,17 +88,14 @@ var prt_game = cc.Layer.extend({
     // ボール表示 -------------------------------------------------------------------
     ball_p = new cc.Sprite(res_prt.test_bullet_png);
     ball_p.setPosition(cc.p(size.width * 0.5, size.height * 0.5));
-    ball_p.setScale(0.5);
     this.addChild(ball_p);
     this.scheduleUpdate();
 
     // プレイヤー表示 ----------------------------------------------------------------
     pl_p = new cc.Sprite(res_prt.test_pl_png);
-    pl_p.setScale(0.5);
-    pl_p.setPosition(cc.p(size.width * 0.5, size.height * 0.04));
+    pl_p.setPosition(cc.p(size.width * 0.5, size.height * 0.045));
     reflection_p = new cc.Sprite(res_prt.test_reflection_png);
-    reflection_p.setScale(1.5);
-    reflection_p.setPosition(24, 0);
+    reflection_p.setPosition(12, -5);
     pl_p.addChild(reflection_p);
     var pllayer_p = cc.Layer.create();
     pllayer_p.addChild(pl_p);
@@ -109,17 +106,16 @@ var prt_game = cc.Layer.extend({
 
   },
   update: function(dt){
-    // プレイヤー当たり判定設定
-    plBox_p = pl_p.getBoundingBox();
-    // 球当たり判定設定
-    ballBox_p = ball_p.getBoundingBox();
-    // 反射範囲当たり判定設定
-    reflectionBox_p = reflection_p.getBoundingBox();
     // 球の移動処理 -----------------------------------------------------------------
-    if(ball_p.getPositionX() > size.width -2.5 || ball_p.getPositionX() < 2.5) ball_spd_x *= -1;
-    if(ball_p.getPositionY() > size.height - 46.5 || ball_p.getPositionY() < 2.5) ball_spd_y *= -1;
+    if(ball_p.getPositionX() > size.width -2.5 && ball_spd_x > 0) ball_spd_x *= -1;
+    if(ball_p.getPositionX() < 2.5 && ball_spd_x < 0) ball_spd_x *= -1;
+    if(ball_p.getPositionY() > size.height - 46.5 && ball_spd_y > 0 ) ball_spd_y *= -1;
+    if(ball_p.getPositionY() < 2.5 && ball_spd_y < 0 ) ball_spd_y *= -1;
     ball_p.setPosition(cc.p(ball_p.getPositionX() + ball_spd_x, ball_p.getPositionY() + ball_spd_y));
-  },
+
+    // プレイヤー当たり判定
+    plBox_p = pl_p.getBoundingBox();
+  }
 
 });
 
@@ -132,15 +128,32 @@ var touchListener = cc.EventListener.create({
     }
     return true; },
   onTouchMoved: function(touch, event){
-    if(touching_p)
-    pl_p.setPosition(cc.p(touch.getLocationX(), pl_p.getPositionY()));
+    if(touching_p){
+      pl_p.setPosition(cc.p(touch.getLocationX(), pl_p.getPositionY()));
+    }
   },
   onTouchEnded: function(touch, event){
-    if(touching_p)
-    touching_p = false;
-    if (cc.rectContainsRect(reflectionBox_p, ballBox_p)) {
-      ball_spd_x *= -1;
-      ball_spd_y *= -1;
+    if(touching_p){
+      var horizontal = (pl_p.getPositionX()) - ball_p.getPositionX();
+      var vertical = (pl_p.getPositionY() - 12) - ball_p.getPositionY();
+      //console.log(horizontal + " : " + vertical );
+      if ((horizontal * horizontal) + (vertical * vertical) <= (38 * 38)) {
+        console.log("hit");
+        if(ball_spd_y < 0){
+          if(pl_p.getPositionX() < ball_p.getPositionX() && ball_spd_x < 0)
+            ball_spd_x *= -1;
+          else if(pl_p.getPositionX() > ball_p.getPositionX() && ball_spd_x > 0)
+            ball_spd_x *= -1;
+          ball_spd_y *= -1;
+          if (Math.abs(ball_spd_x) < 3.5 && Math.abs(ball_spd_y) < 3.5) {
+            if(ball_spd_x < 0) ball_spd_x -= 0.3;
+            else ball_spd_x += 0.3;
+            if(ball_spd_y < 0) ball_spd_y -= 0.3;
+            else ball_spd_y += 0.3;
+          }
+        }
+      }
+      touching_p = false;
     }
   }
 });
