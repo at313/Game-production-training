@@ -7,6 +7,9 @@ var ball_p;
 // プレイヤー表示用変数
 var pl_p;
 
+// エネミー表示用変数
+var en_p = [];
+
 // 当たり判定用変数
 var plBox_p;
 var ballBox_p;
@@ -101,6 +104,60 @@ var prt_game = cc.Layer.extend({
     pllayer_p.addChild(pl_p);
     this.addChild(pllayer_p);
 
+    // エネミー表示(5体) ------------------------------------------------------------
+    var enslayer_p = cc.Layer.create();
+    for(var i = 0; i < 5; i++){
+      en_p[i] = new cc.Sprite(res_prt.test_en_png);
+      enslayer_p.addChild(en_p[i]);
+    }
+    en_p[0].setPosition(cc.p(size.width * 0.6, size.height * 0.3));
+    en_p[1].setPosition(cc.p(size.width * 0.4, size.height * 0.42));
+    en_p[2].setPosition(cc.p(size.width * 0.2, size.height * 0.54));
+    en_p[3].setPosition(cc.p(size.width * 0.8, size.height * 0.66));
+    en_p[4].setPosition(cc.p(size.width * 0.3, size.height * 0.78));
+
+    this.addChild(enslayer_p);
+
+    // エネミー移動 -----------------------------------------------------------------
+    // エネミー１
+
+    var move0_1 = cc.JumpTo.create(2,cc.p(en_p[0].getPositionX() + 50,en_p[0].getPositionY()),0, 1);
+    var move0_2 = cc.JumpTo.create(2,cc.p(en_p[0].getPositionX() - 20,en_p[0].getPositionY()),0, 1);
+    var seq0 = cc.sequence(move0_1, move0_2);
+    var rep0 = cc.repeatForever(seq0);
+    en_p[0].runAction(rep0);
+    // エネミー2
+    var move1_1 = cc.MoveTo.create(3.3, cc.p(en_p[1].getPositionX() + 90, en_p[1].getPositionY()));
+    var move1_2 = cc.MoveTo.create(3.3, cc.p(en_p[1].getPositionX() - 50, en_p[1].getPositionY()));
+    var seq1 = cc.sequence(move1_1, move1_2);
+    var rep1 = cc.repeatForever(seq1);
+    en_p[1].runAction(rep1);
+
+
+    // エネミー3
+    var move2_1 = cc.MoveTo.create(2.5, cc.p(en_p[2].getPositionX() + 40, en_p[2].getPositionY()));
+    var move2_2 = cc.MoveTo.create(2.5, cc.p(en_p[2].getPositionX() - 20, en_p[2].getPositionY()));
+    var seq2 = cc.sequence(move2_1, move2_2);
+    var rep2 = cc.repeatForever(seq2);
+    en_p[2].runAction(rep2);
+
+
+    // エネミー4
+    var move3_1 = cc.MoveTo.create(3.7, cc.p(en_p[3].getPositionX() - 100, en_p[3].getPositionY()));
+    var move3_2 = cc.MoveTo.create(3.7, cc.p(en_p[3].getPositionX() + 10, en_p[3].getPositionY()));
+    var seq3 = cc.sequence(move3_1, move3_2);
+    var rep3 = cc.repeatForever(seq3);
+    en_p[3].runAction(rep3);
+
+
+    // エネミー5
+    var move4_1 = cc.MoveTo.create(2.9, cc.p(en_p[4].getPositionX() + 100, en_p[4].getPositionY()));
+    var move4_2 = cc.MoveTo.create(2.9, cc.p(en_p[4].getPositionX() - 10, en_p[4].getPositionY()));
+    var seq4 = cc.sequence(move4_1, move4_2);
+    var rep4 = cc.repeatForever(seq4);
+    en_p[4].runAction(rep4);
+
+
     // タッチイベントのリスナー追加
     cc.eventManager.addListener(touchListener, this);
 
@@ -113,11 +170,41 @@ var prt_game = cc.Layer.extend({
     if(ball_p.getPositionY() < 2.5 && ball_spd_y < 0 ) ball_spd_y *= -1;
     ball_p.setPosition(cc.p(ball_p.getPositionX() + ball_spd_x, ball_p.getPositionY() + ball_spd_y));
 
+    // エネミーとの当たり判定
+    /*
+    for (var i = 0; i < en_p.length; i++) {
+      var horizontal = (pl_p.getPositionX()) - ball_p.getPositionX();
+      var vertical = (pl_p.getPositionY() - 12) - ball_p.getPositionY();
+      //console.log(horizontal + " : " + vertical );
+      if ((horizontal * horizontal) + (vertical * vertical) <= (38 * 38)) {
+        console.log("hit");
+        if(ball_spd_y < 0){
+          if(pl_p.getPositionX() < ball_p.getPositionX() && ball_spd_x < 0)
+            ball_spd_x *= -1;
+          else if(pl_p.getPositionX() > ball_p.getPositionX() && ball_spd_x > 0)
+            ball_spd_x *= -1;
+          ball_spd_y *= -1;
+          if (Math.abs(ball_spd_x) < 3.5 && Math.abs(ball_spd_y) < 3.5) {
+            if(ball_spd_x < 0) ball_spd_x -= 0.3;
+            else ball_spd_x += 0.3;
+            if(ball_spd_y < 0) ball_spd_y -= 0.3;
+            else ball_spd_y += 0.3;
+          }
+        }
+      }
+    }
+    */
+
+
     // プレイヤー当たり判定
     plBox_p = pl_p.getBoundingBox();
-  }
+  },
 
+  remove_en: function(num){
+    enslayer_p.removeChild(en_p[num]);
+  }
 });
+
 
 var touchListener = cc.EventListener.create({
   event: cc.EventListener.TOUCH_ONE_BY_ONE,
