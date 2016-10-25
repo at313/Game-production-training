@@ -25,6 +25,12 @@ var timer_p = 0;
 // 残機カウント用変数
 var life_p = 2;
 
+// 各ラベルの表示用変数
+var timelabel_p;
+var lifelabel_p;
+var stagelabel_p;
+var roundlabel_p;
+
 // 球の移動速度用変数
 var ball_spd_x = 1;
 var ball_spd_y = 1;
@@ -62,28 +68,28 @@ var prt_game = cc.Layer.extend({
 
     // タイマーラベル表示 -------------------------------------------------------------
     var m_p = 0;
-    var timelabel_p = new cc.LabelTTF("TIME - " + "00" + ":" + "00", "Arial", 10);
+    timelabel_p = new cc.LabelTTF("TIME - " + "00" + ":" + "00", "Arial", 10);
     var timelayer_p = cc.Layer.create();
     timelabel_p.setPosition(cc.p(size.width * 0.18, size.height * 0.97));
     timelayer_p.addChild(timelabel_p);
     this.addChild(timelayer_p);
 
     // 残機ラベル表示 ----------------------------------------------------------------
-    var lifelabel_p = new cc.LabelTTF("LIFE - " + life_p, "Arial", 10);
+    lifelabel_p = new cc.LabelTTF("LIFE - " + life_p, "Arial", 10);
     var lifelayer_p = cc.Layer.create();
     lifelabel_p.setPosition(cc.p(size.width * 0.13, size.height * 0.92));
     lifelayer_p.addChild(lifelabel_p);
     this.addChild(lifelayer_p);
 
     // ステージラベル表示 -------------------------------------------------------------
-    var stagelabel_p = new cc.LabelTTF("STAGE - PRT", "Arial", 10);
+    stagelabel_p = new cc.LabelTTF("STAGE - PRT", "Arial", 10);
     var stagelayer_p = cc.Layer.create();
     stagelabel_p.setPosition(cc.p(size.width * 0.8, size.height * 0.97));
     stagelayer_p.addChild(stagelabel_p);
     this.addChild(stagelayer_p);
 
     // ラウンドラベル表示 --------------------------------------------------------------
-    var roundlabel_p = new cc.LabelTTF("ROUND - 1/1", "Arial", 10);
+    roundlabel_p = new cc.LabelTTF("ROUND - 1/1", "Arial", 10);
     var roundlayer_p = cc.Layer.create();
     roundlabel_p.setPosition(cc.p(size.width * 0.79, size.height * 0.92));
     roundlayer_p.addChild(roundlabel_p);
@@ -168,7 +174,13 @@ var prt_game = cc.Layer.extend({
     if(ball_p.getPositionX() > size.width -2.5 && ball_spd_x > 0) ball_spd_x *= -1;
     if(ball_p.getPositionX() < 2.5 && ball_spd_x < 0) ball_spd_x *= -1;
     if(ball_p.getPositionY() > size.height - 46.5 && ball_spd_y > 0 ) ball_spd_y *= -1;
-    if(ball_p.getPositionY() < 2.5 && ball_spd_y < 0 ) ball_spd_y *= -1;
+    if(ball_p.getPositionY() < 2.5 && ball_spd_y < 0 ){
+      ball_spd_y *= -1;
+      if(life_p > 0){
+        life_p--;
+        lifelabel_p.setString("LIFE - " + life_p);
+      }
+    }
     ball_p.setPosition(cc.p(ball_p.getPositionX() + ball_spd_x, ball_p.getPositionY() + ball_spd_y));
 
     // エネミーとの当たり判定 ----------------------------------------------------------
