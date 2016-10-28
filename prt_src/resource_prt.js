@@ -1,5 +1,6 @@
 var res_prt = {
   test_title_png: "prt_res/title_base.png",
+  test_select_png: "prt_res/select_prt.png",
   test_back_png : "prt_res/stage_base.png",
   test_rou_res_png: "prt_res/round_res_prt.png",
   test_button_png: "prt_res/prt_button.png",
