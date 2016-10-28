@@ -1,3 +1,4 @@
+var space = null;
 // 画面サイズ用変数
 var size;
 
@@ -50,11 +51,23 @@ var fc01;
 var fc02;
 
 var TestScene = cc.Scene.extend({
+  ctot: function(){
+    this._super();
+        this.space = space;
+        this.initPhysics();
+  },
+  initPhysics:function(){
+    this.space = new cp.Space();
+    tihs.space.gravity = cp.v(0, 0);
+  },
   onEnter:function () {
     this._super();
     prt_gameLayer = new prt_game();
     prt_gameLayer.init();
     this.addChild(prt_gameLayer);
+    this.scheduleUpdate();
+  },
+  update: function(dt){
   }
 });
 
@@ -237,6 +250,8 @@ var Ball_p = cc.Sprite.extend({
         lifelabel_p.setString("LIFE - " + life_p);
         ball_p_layer.removeChild(ball_p);
         start_ball = false;
+        ball_spd_x = 1;
+        ball_spd_y = 1;
       }
     }
     this.setPosition(cc.p(this.getPositionX() + ball_spd_x, this.getPositionY() + ball_spd_y));
@@ -254,6 +269,12 @@ var Ball_p = cc.Sprite.extend({
           else if(en_p[i].getPositionX() > this.getPositionX() && ball_spd_x > 0)
             ball_spd_x *= -1;
           ball_spd_y *= -1;
+          if (Math.abs(ball_spd_x) < 3.5 && Math.abs(ball_spd_y) < 3.5) {
+            if(ball_spd_x < 0) ball_spd_x -= 0.3;
+            else ball_spd_x += 0.3;
+            if(ball_spd_y < 0) ball_spd_y -= 0.3;
+            else ball_spd_y += 0.3;
+          }
           prt_gameLayer.remove_en(i);
         }
       }
@@ -286,7 +307,7 @@ var Enemy_p = cc.Sprite.extend({
 var Enemy_bullet = cc.Sprite.extend({
   ctor: function(paramX,paramY){
     this._super();
-    this.initWithFile(res_prt.test_bullet_png);
+    this.initWithFile(res_prt.test_bullet_en_png);
     this.setPosition(cc.p(paramX, paramY));
     this.runAction(cc.MoveTo.create(2,cc.p(this.getPositionX(), -10)));
   },
@@ -313,6 +334,24 @@ var Enemy_bullet = cc.Sprite.extend({
   }
 });
 
+// アイテムスプライト -------------------------------------------------------------------------------------------------
+var Item = cc.Sprite.extend({
+  ctor: function(num){
+    this._super();
+    this.initWithFile(res_prt.test_item_png);
+    this.setPosition(Math.rundom() * 190 + 20, 370);
+    this.val = num;
+    var item_move = cc.MoveTo.create(3, cc.p(this.getPositionX(), -10));
+    this.runAction(item_move);
+  },
+  onEnter: function(){
+    this._super();
+    this.scheduleUpdate();
+  },
+  update: function(){
+
+  }
+});
 
 // タッチイベント -----------------------------------------------------------------------------------------------------
 var touchListener = cc.EventListener.create({
@@ -344,10 +383,10 @@ var touchListener = cc.EventListener.create({
                 ball_spd_x *= -1;
               ball_spd_y *= -1;
               if (Math.abs(ball_spd_x) < 3.5 && Math.abs(ball_spd_y) < 3.5) {
-                if(ball_spd_x < 0) ball_spd_x -= 0.3;
-                else ball_spd_x += 0.3;
-                if(ball_spd_y < 0) ball_spd_y -= 0.3;
-                else ball_spd_y += 0.3;
+                if(ball_spd_x < 0) ball_spd_x -= 0.5;
+                else ball_spd_x += 0.5;
+                if(ball_spd_y < 0) ball_spd_y -= 0.5;
+                else ball_spd_y += 0.5;
               }
             }
           }
