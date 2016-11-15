@@ -1,6 +1,6 @@
-// title_prt.js
+// title.js
 
-var title_prt = cc.Layer.extend({
+var title = cc.Layer.extend({
   ctor: function(){
    this._super();
    var size = cc.director.getWinSize();
@@ -11,18 +11,18 @@ var title_prt = cc.Layer.extend({
    title_back_layer.addChild(title_back);
    this.addChild(title_back_layer);
 
-   startlabel_p = new cc.LabelTTF("Click on START", "Arial", 10);
-   var startlayer_p = cc.Layer.create();
-   startlabel_p.setPosition(cc.p(size.width * 0.5, size.height * 0.2));
-   startlayer_p.addChild(startlabel_p);
-   this.addChild(startlayer_p);
-   startlabel_p.runAction(cc.repeatForever(cc.Blink.create(1,1)));
+   var  startlabel = new cc.LabelTTF("Click on START", "Arial", 10);
+   var startlayer = cc.Layer.create();
+   startlabel.setPosition(cc.p(size.width * 0.5, size.height * 0.2));
+   startlayer.addChild(startlabel);
+   this.addChild(startlayer);
+   startlabel.runAction(cc.repeatForever(cc.Blink.create(1,1)));
 
-   cc.eventManager.addListener(touchListener2, this);
+   cc.eventManager.addListener(touchListener_title, this);
  }
 });
 
-var touchListener2 = cc.EventListener.create({
+var touchListener_title = cc.EventListener.create({
   event: cc.EventListener.TOUCH_ONE_BY_ONE,
   swallowTouches: true,
   onTouchBegan: function(touch, event){
@@ -36,11 +36,11 @@ var touchListener2 = cc.EventListener.create({
 });
 
 
-var title_prtScene = cc.Scene.extend({
+var titleScene = cc.Scene.extend({
   onEnter: function(){
     this._super();
 
-    var title_prttlayer = new title_prt();
-    this.addChild(title_prttlayer);
+    var titletlayer = new title();
+    this.addChild(titletlayer);
   }
 });
