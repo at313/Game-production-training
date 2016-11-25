@@ -31,7 +31,7 @@ var touchListener_title = cc.EventListener.create({
   onTouchMoved: function(touch, event){
   },
   onTouchEnded: function(touch, event){
-    cc.director.runScene(new select_prtScene());
+    cc.director.runScene(new Stage1_1Scene());
   }
 });
 

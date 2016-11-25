@@ -1,5 +1,6 @@
 var Player_Layer = cc.Layer.extend({
   pl_Box: null,
+  damege_count: null,
   ctor: function(){
     this._super();
     player_sprite = new cc.Sprite.create(res.player_png);
@@ -8,6 +9,8 @@ var Player_Layer = cc.Layer.extend({
     reflection_sprite = new cc.Sprite.create(res.reflection_png);
     reflection_sprite.setPosition(12, -5);
     player_sprite.addChild(reflection_sprite);
+
+    this.damege_count = 0;
 
     this.addChild(player_sprite);
 
@@ -28,6 +31,13 @@ var Player_Layer = cc.Layer.extend({
           this.tap_count_reset();
         }
       }
+      if (pl_dm_flg == true) {
+        this.damege_count++;
+        if (this.damege_count == 180) {
+          pl_dm_flg = false;
+          this.damege_count = 0;
+        }
+      }
     },
     onTouchBegan: function(touch, event){
       this.pl_Box = player_sprite.getBoundingBox();
@@ -37,12 +47,13 @@ var Player_Layer = cc.Layer.extend({
       return true;
     },
     onTouchMoved: function(touch, event){
-      if(pl_touching == true/*&& pl_dm_flg == false*/){
+      if(pl_touching == true && pl_dm_flg == false){
       player_sprite.setPosition(cc.p(touch.getLocationX(), player_sprite.getPositionY()));
     }
     },
     onTouchEnded: function(touch, event){
       if(pl_touching == true){
+        // ダブルタップ判定及びミサイル発射処理
         if (touch_count < 2) {
           touch_count++;
           doubl_tap = true;
@@ -51,11 +62,13 @@ var Player_Layer = cc.Layer.extend({
             touch_count = 0;
             double_count = 0;
             if (pl_atk == true) {
-              var pl_misail = new Misail();
+              pl_misail = new Misail();
               misairu_layer.addChild(pl_misail);
+              pl_atk = false;
             }
           }
         }
+        // ボール反射処理
         if(start_ball == true){
         var horizontal = (player_sprite.getPositionX()) - ball_sprite.getPositionX();
         var vertical = (player_sprite.getPositionY() - 12) - ball_sprite.getPositionY();
@@ -75,6 +88,7 @@ var Player_Layer = cc.Layer.extend({
             }
           }
         }
+        // ボール発射処理
         if (start_ball == false) {
           start_ball = true;
           ball = new Ball_Layer();
@@ -90,6 +104,7 @@ var Player_Layer = cc.Layer.extend({
     }
 });
 
+// ミサイル用スプライト
 var Misail = cc.Sprite.extend({
   ctor: function(){
     this._super();

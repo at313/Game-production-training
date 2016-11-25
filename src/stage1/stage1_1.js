@@ -4,15 +4,12 @@ var Stage1_1Scene = cc.Scene.extend({
         stage1_1gamelayer = new stage1_1game();
         stage1_1gamelayer.init();
         this.addChild(stage1_1gamelayer);
-        this.scheduleUpdate();
-    },
-    update: function(dt){},
+    }
 });
 
 var stage1_1game = cc.Layer.extend({
   init: function(){
     this._super();
-    size = cc.director.getWinSize();
     touch_count = 0;
     ball_type = 0;
     ball_spd_x = 1;
@@ -24,6 +21,13 @@ var stage1_1game = cc.Layer.extend({
     doubl_tap = false;
     double_count = 0;
     enemy = [];
+    pl_atk = false;
+    misail = false;
+    pl_dm_flg = false;
+    pl_dm_count = 0;
+    enemy_death = 0;
+    dm_life = 0
+    game_clear = false;
 
     // 上部画像を表示 ----------------------------------------------------------------
     var up_design = new cc.Sprite(res.up_design_png);
@@ -95,13 +99,26 @@ var stage1_1game = cc.Layer.extend({
     misairu_layer = cc.Layer.create();
     this.addChild(misairu_layer, 1);
 
+    // エネミーショットレイヤー
+    enemy_shot_layer = cc.Layer.create();
+    this.addChild(enemy_shot_layer, 1);
 
-    this.schedule(this.addItem, 30);
+    this.schedule(this.addItem, 15);
     this.scheduleUpdate();
   },
   update: function(dt){
-    timer += 0.01;
-    timelabel.setString("TIME - " + timer.toFixed(2));
+    if (enemy_death < enemy.length) {
+      timer += 0.01;
+      timelabel.setString("TIME - " + timer.toFixed(2));
+    }
+    if (enemy_death >= enemy.length) {
+      // game_clear = true;
+      // resalt_timer = timer;
+      // resalt_life = life;
+      // resalt_pl_dm = pl_dm_count;
+      // resalt_life_dm = dm_life;
+      // cc.director.runScene(new R_resalt_Scene());
+    }
   },
   addItem: function(){
     var item = new Item();

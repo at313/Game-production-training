@@ -32,7 +32,7 @@ var Item = cc.Sprite.extend({
       switch (this.value) {
         case 1:
           ball_type = 1;
-          ball.setTexture(res.ball2_png);
+          ball_sprite.setTexture(res.ball2_png);
           item_layer.removeChild(this);
           break;
         case 2:
