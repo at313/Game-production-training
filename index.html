@@ -3,9 +3,15 @@
 <head>
     <title>Reflection_Fighter</title>
     <script type="text/javascript" src="cocos2d-js-v3.11.js" charset="UTF-8"></script>
-    <script type="text/javascript" src="prt_src/resource.js" charset="UTF-8"></script>
-    <script type="text/javascript" src="prt_src/globals.js" charset="UTF-8"></script>
-    <script type="text/javascript" src="prt_src/title.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/resource.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/globals.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/title.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/back.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/stage1/stage1_1.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/player.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/ball.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/enemy.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/item.js" charset="UTF-8"></script>
 </head>
 <body>
     <canvas id="gameCanvas" ></canvas>
@@ -21,8 +27,8 @@
                   // 表示領域がリサイズされた場合、自動的にプログラムの画面をリサイズさせる
                   cc.view.resizeWithBrowserSize(true);
 
-                  cc.LoaderScene.preload(g_resources_prt, function () {
-                       cc.director.runScene(new titleScene());
+                  cc.LoaderScene.preload(g_resources, function () {
+                       cc.director.runScene(new Stage1_1Scene());
                   }, this);
               };
               cc.game.run("gameCanvas");
