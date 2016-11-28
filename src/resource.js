@@ -43,8 +43,8 @@ var res = {
   // ラウンドリザルト
   r_res_back_png: "res/round_res.png",
   // ステージリザルト
-  s_res_back1_png: "res/stage_resalt1.png",
-  s_res_back2_png: "res/stage_resalt2.png"
+  s_res_back1_png: "res/stage_result1.png",
+  s_res_back2_png: "res/stage_result2.png"
 };
 
 var g_resources = [];

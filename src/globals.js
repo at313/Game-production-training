@@ -99,12 +99,27 @@ var resalt_timer;
 var resalt_life;
 var resalt_life_dm;
 var resalt_pl_dm;
-var resalt_rank;
-
+var round_flg;
 // --------------------------------
 
-// ステージリザルト用変数 -------------
-var stage_resalt;
-var stage_rank;
+// ステージ1リザルト用変数 -------------
+var stage1_resalt;
+var stage1_rank;
+var stage1_r1_rank;
+var stage1_r2_rank;
+// --------------------------------
 
+// ステージ2リザルト用変数 -------------
+var stage2_resalt;
+var stage2_rank;
+var stage2_r1_rank;
+var stage2_r2_rank;
+// --------------------------------
+
+// ステージ3リザルト用変数 -------------
+var stage3_resalt;
+var stage3_rank;
+var stage3_r1_rank;
+var stage3_r2_rank;
+var stage3_r3_rank;
 // --------------------------------

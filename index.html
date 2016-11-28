@@ -12,6 +12,7 @@
     <script type="text/javascript" src="src/ball.js" charset="UTF-8"></script>
     <script type="text/javascript" src="src/enemy.js" charset="UTF-8"></script>
     <script type="text/javascript" src="src/item.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/r-resalt.js" charset="UTF-8"></script>
 </head>
 <body>
     <canvas id="gameCanvas" ></canvas>
@@ -28,7 +29,7 @@
                   cc.view.resizeWithBrowserSize(true);
 
                   cc.LoaderScene.preload(g_resources, function () {
-                       cc.director.runScene(new Stage1_1Scene());
+                       cc.director.runScene(new R_resalt_Scene());
                   }, this);
               };
               cc.game.run("gameCanvas");
