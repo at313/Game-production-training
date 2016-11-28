@@ -3,7 +3,7 @@
 var title = cc.Layer.extend({
   ctor: function(){
    this._super();
-   var size = cc.director.getWinSize();
+   size = cc.director.getWinSize();
 
    var title_back = new cc.Sprite(res.title_png);
    title_back.setPosition(cc.p(size.width * 0.5, size.height * 0.5));

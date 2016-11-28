@@ -27,7 +27,7 @@ var Player_Layer = cc.Layer.extend({
     update: function(dt){
       if (doubl_tap == true) {
         double_count++;
-        if (double_count == 100) {
+        if (double_count == 50) {
           this.tap_count_reset();
         }
       }

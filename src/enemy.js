@@ -67,6 +67,7 @@ var Enemy = cc.Sprite.extend({
           enemys_layer.removeChild(this);
           misairu_layer.removeChild(pl_misail);
           misail = false;
+          enemy_death++;
         }
       }
       if (this.shot_interval == false) {

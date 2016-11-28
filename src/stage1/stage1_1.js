@@ -10,6 +10,7 @@ var Stage1_1Scene = cc.Scene.extend({
 var stage1_1game = cc.Layer.extend({
   init: function(){
     this._super();
+    round_flg = 11;
     touch_count = 0;
     ball_type = 0;
     ball_spd_x = 1;
@@ -78,13 +79,14 @@ var stage1_1game = cc.Layer.extend({
     enemys_layer.addChild(enemy[0]);
     enemy[1] = new Enemy(size.width * 0.4, size.height * 0.42, 90, -50, 3.3, 3.3);
     enemys_layer.addChild(enemy[1]);
+    /*
     enemy[2] = new Enemy(size.width * 0.2, size.height * 0.54, 40, -20, 2.5, 2.5);
     enemys_layer.addChild(enemy[2]);
     enemy[3] = new Enemy(size.width * 0.8, size.height * 0.66, -100, 10, 3.7, 3.7);
     enemys_layer.addChild(enemy[3]);
     enemy[4] = new Enemy(size.width * 0.3, size.height * 0.78, 100, -10, 2.9, 2.9);
     enemys_layer.addChild(enemy[4]);
-
+    */
     this.addChild(enemys_layer, 2);
 
     // アイテムレイヤー
@@ -103,7 +105,7 @@ var stage1_1game = cc.Layer.extend({
     enemy_shot_layer = cc.Layer.create();
     this.addChild(enemy_shot_layer, 1);
 
-    this.schedule(this.addItem, 15);
+    this.schedule(this.addItem, 3);
     this.scheduleUpdate();
   },
   update: function(dt){
@@ -112,12 +114,12 @@ var stage1_1game = cc.Layer.extend({
       timelabel.setString("TIME - " + timer.toFixed(2));
     }
     if (enemy_death >= enemy.length) {
-      // game_clear = true;
-      // resalt_timer = timer;
-      // resalt_life = life;
-      // resalt_pl_dm = pl_dm_count;
-      // resalt_life_dm = dm_life;
-      // cc.director.runScene(new R_resalt_Scene());
+      game_clear = true;
+      resalt_timer = timer;
+      resalt_life = life;
+      resalt_pl_dm = pl_dm_count;
+      resalt_life_dm = dm_life;
+      cc.director.runScene(new R_resalt_Scene());
     }
   },
   addItem: function(){

@@ -8,6 +8,8 @@
     <script type="text/javascript" src="src/title.js" charset="UTF-8"></script>
     <script type="text/javascript" src="src/back.js" charset="UTF-8"></script>
     <script type="text/javascript" src="src/stage1/stage1_1.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/stage1/stage1_2.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/stage1/s1_resalt.js" charset="UTF-8"></script>
     <script type="text/javascript" src="src/player.js" charset="UTF-8"></script>
     <script type="text/javascript" src="src/ball.js" charset="UTF-8"></script>
     <script type="text/javascript" src="src/enemy.js" charset="UTF-8"></script>
@@ -29,7 +31,7 @@
                   cc.view.resizeWithBrowserSize(true);
 
                   cc.LoaderScene.preload(g_resources, function () {
-                       cc.director.runScene(new R_resalt_Scene());
+                       cc.director.runScene(new titleScene());
                   }, this);
               };
               cc.game.run("gameCanvas");
