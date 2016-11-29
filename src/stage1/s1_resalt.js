@@ -123,16 +123,19 @@ var S1_resalt = cc.Layer.extend({
   r1_label_on:function(){
     var fade = cc.FadeIn.create(0.1);
     this.r1_resalt_label.runAction(fade);
+    audio_engin.playEffect(res.se_res1);
     this.scheduleOnce(this.r2_label_on, 0.5);
   },
   r2_label_on: function(){
     var fade = cc.FadeIn.create(0.1);
     this.r2_resalt_label.runAction(fade);
+    audio_engin.playEffect(res.se_res1);
     this.scheduleOnce(this.s_label_on, 0.8);
   },
   s_label_on: function(){
     var fade = cc.FadeIn.create(0.3);
     this.s_resalt_label.runAction(fade);
+    audio_engin.playEffect(res.se_res2);
     this.scheduleOnce(this.flagchenger, 0.1);
   },
   flagchenger: function(){

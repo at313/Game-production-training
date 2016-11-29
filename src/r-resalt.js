@@ -160,21 +160,25 @@ var R_resalt = cc.Layer.extend({
   life_label_on: function(){
     var fade = cc.FadeIn.create(0.1);
     this.resalt_life_label.runAction(fade);
+    audio_engin.playEffect(res.se_res1);
     this.scheduleOnce(this.timer_label_on, 0.5);
   },
   timer_label_on:function(){
     var fade = cc.FadeIn.create(0.1);
     this.resalt_timer_label.runAction(fade);
+    audio_engin.playEffect(res.se_res1);
     this.scheduleOnce(this.dm_label_on, 0.5);
   },
   dm_label_on: function(){
     var fade = cc.FadeIn.create(0.1);
     this.resalt_pl_dm_label.runAction(fade);
+    audio_engin.playEffect(res.se_res1);
     this.scheduleOnce(this.rank_label_on, 0.8);
   },
   rank_label_on: function(){
     var fade = cc.FadeIn.create(0.3);
     this.resalt_rank_label.runAction(fade);
+    audio_engin.playEffect(res.se_res2);
     this.scheduleOnce(this.flagchenger, 0.1);
   },
   flagchenger: function(){

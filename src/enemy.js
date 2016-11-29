@@ -51,10 +51,12 @@ var Enemy = cc.Sprite.extend({
               if(ball_spd_y < 0) ball_spd_y -= 0.3;
               else ball_spd_y += 0.3;
             }
+            audio_engin.playEffect(res.se_en_ban);
             enemys_layer.removeChild(this);
             enemy_death++;
         }
         if (cc.rectIntersectsRect(this.ball_Box, this.en_Box) && ball_type == 1) {
+          audio_engin.playEffect(res.se_en_ban);
           enemys_layer.removeChild(this);
           enemy_death++;
         }
@@ -64,6 +66,7 @@ var Enemy = cc.Sprite.extend({
         this.misail_Box = pl_misail.getBoundingBox();
         this.en_Box = this.getBoundingBox();
         if (cc.rectIntersectsRect(this.misail_Box, this.en_Box)) {
+          audio_engin.playEffect(res.se_en_ban);
           enemys_layer.removeChild(this);
           misairu_layer.removeChild(pl_misail);
           misail = false;

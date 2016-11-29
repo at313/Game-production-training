@@ -64,6 +64,7 @@ var Player_Layer = cc.Layer.extend({
             if (pl_atk == true) {
               pl_misail = new Misail();
               misairu_layer.addChild(pl_misail);
+              audio_engin.playEffect(res.se_misail);
               pl_atk = false;
             }
           }
@@ -73,6 +74,7 @@ var Player_Layer = cc.Layer.extend({
         var horizontal = (player_sprite.getPositionX()) - ball_sprite.getPositionX();
         var vertical = (player_sprite.getPositionY() - 12) - ball_sprite.getPositionY();
         if ((horizontal * horizontal) + (vertical * vertical) <= (38 * 38)) {
+          audio_engin.playEffect(res.se_ref);
           if(ball_spd_y < 0){
             if(player_sprite.getPositionX() < ball_sprite.getPositionX() && ball_spd_x < 0)
               ball_spd_x *= -1;
