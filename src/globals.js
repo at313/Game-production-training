@@ -1,10 +1,11 @@
 // 画面サイズ用変数
 var size;
+var audio_engin;
 
 // セレクト画面用変数 -----------------
-var stage1_rank;
-var stafe2_rank;
-var stage3_rank;
+var stage1_rank = null;
+var stage2_rank = null;
+var stage3_rank = null;
 var stage2_on = false;
 var stage3_on = false;
 // ---------------------------------
@@ -105,14 +106,12 @@ var round_flg;
 
 // ステージ1リザルト用変数 -------------
 var stage1_resalt;
-var stage1_rank;
 var stage1_r1_rank;
 var stage1_r2_rank;
 // --------------------------------
 
 // ステージ2リザルト用変数 -------------
 var stage2_resalt;
-var stage2_rank;
 var stage2_r1_rank;
 var stage2_r2_rank;
 var stage2_r3_rank;
@@ -120,7 +119,6 @@ var stage2_r3_rank;
 
 // ステージ3リザルト用変数 -------------
 var stage3_resalt;
-var stage3_rank;
 var stage3_r1_rank;
 var stage3_r2_rank;
 var stage3_r3_rank;

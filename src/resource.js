@@ -23,9 +23,10 @@ var res = {
   button18_png: "res/button18.png",
   button19_png: "res/button19.png",
   button20_png: "res/button20.png",
-  button21_png: "res/button21.png",
+  button21_png: "res/help.png",
   // 操作説明
   // メイン
+  chenge_back_png: "res/stage_chenge.png",
   player_png: "res/player_base2.png",
   reflection_png: "res/test_reflection.png",
   satge_back_png: "res/stage_base.png",
@@ -44,7 +45,18 @@ var res = {
   r_res_back_png: "res/round_res.png",
   // ステージリザルト
   s_res_back1_png: "res/stage_result1.png",
-  s_res_back2_png: "res/stage_result2.png"
+  s_res_back2_png: "res/stage_result2.png",
+
+  //MP3
+  bgm_main: "res/mp3/main.mp3",
+  bgm_title: "res/mp3/title.mp3",
+  bgm_select: "res/mp3/slect.mp3",
+  se_en_ban: "res/mp3/en_ban.mp3",
+  se_ref: "res/mp3/hannsya.mp3",
+  se_misail: "res/mp3/misail.mp3",
+  se_dm: "res/mp3/pl_dm.mp3",
+  se_res1: "res/mp3/res1.mp3",
+  se_res2: "res/mp3/res2.mp3"
 };
 
 var g_resources = [];

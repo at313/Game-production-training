@@ -4,6 +4,9 @@ var title = cc.Layer.extend({
   ctor: function(){
    this._super();
    size = cc.director.getWinSize();
+   audio_engin = cc.audioEngine;
+
+   audio_engin.playMusic(res.bgm_title, true);
 
    var title_back = new cc.Sprite(res.title_png);
    title_back.setPosition(cc.p(size.width * 0.5, size.height * 0.5));
@@ -31,7 +34,8 @@ var touchListener_title = cc.EventListener.create({
   onTouchMoved: function(touch, event){
   },
   onTouchEnded: function(touch, event){
-    cc.director.runScene(new Stage1_1Scene());
+    audio_engin.stopMusic();
+    cc.director.runScene(cc.TransitionFade.create(1, new select_Scene()));
   }
 });
 

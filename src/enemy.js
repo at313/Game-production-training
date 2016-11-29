@@ -138,7 +138,7 @@ var Enemy_bullet = cc.Sprite.extend({
     this.pl_Box = player_sprite.getBoundingBox();
     // プレイヤーとの当たり判定
     if (cc.rectIntersectsRect(this.pl_Box, this.en_shot_Box) && pl_dm_flg == false) {
-      player_sprite.runAction(cc.Blink.create(2, 10));
+      player_sprite.runAction(cc.Blink.create(1, 5));
       pl_dm_flg = true;
       pl_dm_count++;
     }

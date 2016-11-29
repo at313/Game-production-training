@@ -119,11 +119,14 @@ var stage1_2game = cc.Layer.extend({
       resalt_life = life;
       resalt_pl_dm = pl_dm_count;
       resalt_life_dm = dm_life;
-      cc.director.runScene(new R_resalt_Scene());
+      this.scheduleOnce(this.scene_chenge, 0.5);
     }
   },
   addItem: function(){
     var item = new Item();
     item_layer.addChild(item);
+  },
+  scene_chenge: function(){
+    cc.director.runScene(cc.TransitionFade.create(1, new R_resalt_Scene()));
   }
 });

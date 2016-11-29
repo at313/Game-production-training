@@ -33,7 +33,7 @@ var Player_Layer = cc.Layer.extend({
       }
       if (pl_dm_flg == true) {
         this.damege_count++;
-        if (this.damege_count == 180) {
+        if (this.damege_count == 100) {
           pl_dm_flg = false;
           this.damege_count = 0;
         }

@@ -14,12 +14,12 @@ var Ball_Layer = cc.Layer.extend({
     if(ball_sprite.getPositionY() < 2.5 && ball_spd_y < 0 ){
       dm_life++;
       if (life == 0) {
-        game_clear = true;
+        game_clear = false;
         resalt_timer = timer;
         resalt_life = life;
         resalt_pl_dm = pl_dm_count;
         resalt_life_dm = dm_life;
-        cc.director.runScene(new R_resalt_Scene());
+        cc.director.runScene(cc.TransitionFade.create(1, new R_resalt_Scene()));
       }else if(life > 0){
         life--;
         lifelabel.setString("LIFE - " + life);
