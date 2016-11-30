@@ -203,18 +203,131 @@ var Enemy_Ace = cc.Sprite.extend({
 });
 
 var Enemy_Boss = cc.Sprite.extend({
-  ctor: function(){
+  en_hp: 15,
+  def_x: null,
+  def_y: null,
+  en_Box: null,
+  ball_Box: null,
+  misail_Box: null,
+  shot_interval1: false,
+  interval_count1: null,
+  shot_interval2: false,
+  interval_count2: null,
+  shot_interval3: false,
+  interval_count3: null,
+  ctor: function(_def_x, _def_y){
     this._super();
-
+    this.initWithFile(res.enemy_boss_png);
+    this.def_x = _def_x;
+    this.def_y = _def_y;
+    this.setPosition(cc.p(this.def_x, this.def_y));
+    this.interval_count1 = 0;
+    this.interval_count2 = 0;
+    this.interval_count3 = 0;
   },
   onEnter: function(){
     this._super();
-
     this.scheduleUpdate();
   },
-  update: function(dt){
+  update: function(){
+    if (start_ball == true) {
+      // ボールとの当たり判定
+      this.ball_Box = ball_sprite.getBoundingBox();
+      this.en_Box = this.getBoundingBox();
+      if (cc.rectIntersectsRect(this.ball_Box, this.en_Box) && ball_type == 0) {
+            ball_spd_y *= -1;
+            if (Math.abs(ball_spd_x) < 3.5 && Math.abs(ball_spd_y) < 3.5) {
+              if(ball_spd_x < 0) ball_spd_x -= 0.3;
+              else ball_spd_x += 0.3;
+              if(ball_spd_y < 0) ball_spd_y -= 0.3;
+              else ball_spd_y += 0.3;
+            }
+            audio_engin.playEffect(res.se_dm);
+            this.en_hp--;
+        }
+        if (cc.rectIntersectsRect(this.ball_Box, this.en_Box) && ball_type == 1) {
+          ball_spd_y *= -1;
+          if (Math.abs(ball_spd_x) < 3.5 && Math.abs(ball_spd_y) < 3.5) {
+            if(ball_spd_x < 0) ball_spd_x -= 0.3;
+            else ball_spd_x += 0.3;
+            if(ball_spd_y < 0) ball_spd_y -= 0.3;
+            else ball_spd_y += 0.3;
+          }
+          audio_engin.playEffect(res.se_dm);
+          this.en_hp -= 2;
+        }
+      }
+      if (misail == true) {
+        // ミサイルとの当たり判定
+        this.misail_Box = pl_misail.getBoundingBox();
+        this.en_Box = this.getBoundingBox();
+        if (cc.rectIntersectsRect(this.misail_Box, this.en_Box)) {
+          this.en_hp--;
+          audio_engin.playEffect(res.se_dm);
+          this.runAction(cc.Blink.create(0.5, 2));
+          misairu_layer.removeChild(pl_misail);
+          misail = false;
+        }
+      }
+      if (this.shot_interval1 == false) {
+        // 攻撃発射処理1
+        if (player_sprite.getPositionX() < 70) {
+          var en_shot1 = new Enemy_bullet_B(this.getPositionX(), this.getPositionY());
+          enemy_shot_layer.addChild(en_shot1);
+          this.shot_interval1 = true;
+        }
+      }
 
-  }
+      if (this.shot_interval2 == false) {
+        // 攻撃発射処理2
+        if (70 < player_sprite.getPositionX() < 140) {
+          var en_shot2 = new Enemy_bullet_B(this.getPositionX(), this.getPositionY());
+          enemy_shot_layer.addChild(en_shot2);
+          this.shot_interval2 = true;
+        }
+      }
+
+      if (this.shot_interval3 == false) {
+        // 攻撃発射処理3
+        if (140 < player_sprite.getPositionX()) {
+          var en_shot3 = new Enemy_bullet_B(this.getPositionX(), this.getPositionY());
+          enemy_shot_layer.addChild(en_shot3);
+          this.shot_interval3 = true;
+        }
+      }
+
+      // 攻撃間隔設定
+      if (this.shot_interval1 == true) {
+        this.interval_count1++;
+        if (this.interval_count1 == 200) {
+          this.shot_interval1 = false;
+          this.interval_count1 = 0;
+        }
+      }
+      if (this.shot_interval2 == true) {
+        this.interval_count2++;
+        if (this.interval_count2 == 200) {
+          this.shot_interval2 = false;
+          this.interval_count2 = 0;
+        }
+      }
+      if (this.shot_interval3 == true) {
+        this.interval_count3++;
+        if (this.interval_count3 == 200) {
+          this.shot_interval3 = false;
+          this.interval_count3 = 0;
+        }
+      }
+      if (this.en_hp == 0) {
+        this.remove_en();
+      }
+    },
+    remove_en: function(){
+      audio_engin.playEffect(res.se_en_ban);
+      enemys_layer.removeChild(this);
+      audio_engin = cc.audioEngine;
+      enemy_death++;
+    }
 });
 
 // エネミーの攻撃スプライト
@@ -226,6 +339,35 @@ var Enemy_bullet = cc.Sprite.extend({
     this.initWithFile(res.en_shot_png);
     this.setPosition(cc.p(en_x, en_y));
     this.runAction(cc.MoveTo.create(2,cc.p(this.getPositionX(), -10)));
+  },
+  onEnter: function(){
+    this._super();
+    this.scheduleUpdate();
+  },
+  update: function(dt){
+    this.en_shot_Box = this.getBoundingBox();
+    this.pl_Box = player_sprite.getBoundingBox();
+    // プレイヤーとの当たり判定
+    if (cc.rectIntersectsRect(this.pl_Box, this.en_shot_Box) && pl_dm_flg == false) {
+      audio_engin.playEffect(res.se_dm);
+      player_sprite.runAction(cc.Blink.create(1, 5));
+      pl_dm_flg = true;
+      pl_dm_count++;
+    }
+    if (this.getPositionY() < -5) {
+      enemy_shot_layer.removeChild(this);
+    }
+  }
+});
+
+var Enemy_bullet_B = cc.Sprite.extend({
+  en_shot_Box: null,
+  pl_Box: null,
+  ctor: function(en_x, en_y){
+    this._super();
+    this.initWithFile(res.en_shot_png);
+    this.setPosition(cc.p(en_x, en_y));
+    this.runAction(cc.MoveTo.create(2,cc.p(player_sprite.getPositionX(), -10)));
   },
   onEnter: function(){
     this._super();

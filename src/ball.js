@@ -24,7 +24,6 @@ var Ball_Layer = cc.Layer.extend({
       ball_spd_y *= -1;
     }
     if(ball_sprite.getPositionY() < 2.5 && ball_spd_y < 0 ){
-      audio_engin.playEffect(res.se_life_dm);
       /*
       this.dm_sprite = cc.Sprite.create();
       this.dm_sprite.setTextureRect(cc.rect(0, 0, 400, 400));
@@ -36,13 +35,15 @@ var Ball_Layer = cc.Layer.extend({
       dm_life++;
       //this.dm_flg = true;
       if (life == 0) {
+        audio_engin.playEffect(res.se_life_dm);
         game_clear = false;
         resalt_timer = timer;
         resalt_life = life;
         resalt_pl_dm = pl_dm_count;
         resalt_life_dm = dm_life;
         cc.director.runScene(cc.TransitionFade.create(1, new R_resalt_Scene()));
-      }else if(life > 0){
+      }else if(life > 0 && game_clear == false){
+        audio_engin.playEffect(res.se_life_dm);
         this.scheduleOnce(this.life_dm, 0.1);
         life--;
         lifelabel.setString("LIFE - " + life);

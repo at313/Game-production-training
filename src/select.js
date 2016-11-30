@@ -153,7 +153,8 @@ var touchListener_select = cc.EventListener.create({
     }
     if (this.stage3_flg == true) {
       round_flg = 31
-      //cc.director.runScene(cc.TransitionFade.create(1, new Chenge_Scene()));
+      audio_engin.playEffect(res.se_button);
+      cc.director.runScene(cc.TransitionFade.create(1, new Chenge_Scene()));
       this.stage3_flg = false;
     }
   }

@@ -92,13 +92,13 @@ var Scene_cehnge = cc.Layer.extend({
         cc.director.runScene(new Stage2_3Scene());
         break;
       case 31:
-        //cc.director.runScene();
+        cc.director.runScene(new Stage3_1Scene());
         break;
       case 32:
-        //cc.director.runScene();
+        cc.director.runScene(new Stage3_2Scene());
         break;
       case 33:
-        //cc.director.runScene();
+        cc.director.runScene(new Stage3_3Scene());
         break;
       default:
     }

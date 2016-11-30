@@ -6,7 +6,7 @@ var audio_engin;
 var stage1_rank = null;
 var stage2_rank = null;
 var stage3_rank = null;
-var stage2_on = true;
+var stage2_on = false;
 var stage3_on = false;
 // ---------------------------------
 

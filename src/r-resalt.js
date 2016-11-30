@@ -223,13 +223,23 @@ var R_resalt = cc.Layer.extend({
           cc.director.runScene(cc.TransitionFade.create(1, new S2_resalt_Scene()));
           break;
         case 31:
-          //cc.director.runScene();
+          if (game_clear == false) {
+            cc.director.runScene(cc.TransitionFade.create(1, new S3_resalt_Scene()));
+          }else {
+            round_flg = 32;
+            cc.director.runScene(cc.TransitionFade.create(1, new Chenge_Scene()));
+          }
           break;
         case 32:
-          //cc.director.runScene();
+          if (game_clear == false) {
+            cc.director.runScene(cc.TransitionFade.create(1, new S3_resalt_Scene()));
+          }else {
+            round_flg = 33;
+            cc.director.runScene(cc.TransitionFade.create(1, new Chenge_Scene()));
+          }
           break;
         case 33:
-          //cc.director.runScene();
+          cc.director.runScene(cc.TransitionFade.create(1, new S3_resalt_Scene()));
           break;
         default:
       }

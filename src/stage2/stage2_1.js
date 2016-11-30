@@ -77,6 +77,7 @@ var stage2_1game = cc.Layer.extend({
     enemys_layer = cc.Layer.create();
     enemy[0] = new Enemy(size.width * 0.6, size.height * 0.3, 50, -20, 2, 2);
     enemys_layer.addChild(enemy[0]);
+    /*
     enemy[1] = new Enemy(size.width * 0.4, size.height * 0.42, 90, -50, 3.3, 3.3);
     enemys_layer.addChild(enemy[1]);
     enemy[2] = new Enemy(size.width * 0.2, size.height * 0.54, 40, -20, 2.5, 2.5);
@@ -85,6 +86,7 @@ var stage2_1game = cc.Layer.extend({
     enemys_layer.addChild(enemy[3]);
     enemy[4] = new Enemy_Ace(size.width - 30, size.height * 0.78, -160, 0, 2.9, 2.9);
     enemys_layer.addChild(enemy[4]);
+    */
     this.addChild(enemys_layer, 2);
 
     // アイテムレイヤー
