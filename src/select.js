@@ -16,7 +16,7 @@ var select = cc.Layer.extend({
    this._super();
    var size = cc.director.getWinSize();
    audio_engin.stopMusic();
-   audio_engin.playMusic(res.bgm_select, true);
+   audio_engin.playMusic(res.bgm_select2, true);
 
    var select_back = new cc.Sprite(res.select_back_png);
    select_back.setPosition(cc.p(size.width * 0.5, size.height * 0.5));
@@ -141,14 +141,14 @@ var touchListener_select = cc.EventListener.create({
     stage3_B.setOpacity(255);
     if (this.stage1_flg == true) {
       round_flg = 11;
-      audio_engin.stopMusic();
+      audio_engin.playEffect(res.se_button);
       cc.director.runScene(cc.TransitionFade.create(1, new Chenge_Scene()));
-      audio_engin.playMusic(res.bgm_main, true);
       this.stage1_flg = false;
     }
     if (this.stage2_flg == true) {
       round_flg = 21;
-      //cc.director.runScene(cc.TransitionFade.create(1, new Chenge_Scene()));
+      audio_engin.playEffect(res.se_button);
+      cc.director.runScene(cc.TransitionFade.create(1, new Chenge_Scene()));
       this.stage2_flg = false;
     }
     if (this.stage3_flg == true) {

@@ -29,6 +29,7 @@ var Item = cc.Sprite.extend({
     this.item_Box = this.getBoundingBox();
     this.pl_Box = player_sprite.getBoundingBox();
     if(cc.rectIntersectsRect(this.item_Box, this.pl_Box)){
+      audio_engin.playEffect(res.se_pw_up);
       switch (this.value) {
         case 1:
           ball_type = 1;

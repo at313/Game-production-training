@@ -6,7 +6,8 @@ var title = cc.Layer.extend({
    size = cc.director.getWinSize();
    audio_engin = cc.audioEngine;
 
-   audio_engin.playMusic(res.bgm_title, true);
+   audio_engin.playMusic(res.bgm_title2, true);
+   audio_engin.setMusicVolume(0.5);
 
    var title_back = new cc.Sprite(res.title_png);
    title_back.setPosition(cc.p(size.width * 0.5, size.height * 0.5));

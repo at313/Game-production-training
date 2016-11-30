@@ -1,4 +1,7 @@
 var Ball_Layer = cc.Layer.extend({
+  dm_sprite: null,
+  dm_flg: false,
+  dm_count: 0,
   ctor: function(){
     this._super();
     ball_sprite = new cc.Sprite.create(res.ball_png);
@@ -8,11 +11,30 @@ var Ball_Layer = cc.Layer.extend({
     this.scheduleUpdate();
   },
   update: function(dt){
-    if(ball_sprite.getPositionX() > size.width -2.5 && ball_spd_x > 0) ball_spd_x *= -1;
-    if(ball_sprite.getPositionX() < 2.5 && ball_spd_x < 0) ball_spd_x *= -1;
-    if(ball_sprite.getPositionY() > size.height - 46.5 && ball_spd_y > 0 ) ball_spd_y *= -1;
+    if(ball_sprite.getPositionX() > size.width -2.5 && ball_spd_x > 0){
+      audio_engin.playEffect(res.se_ball_kabe);
+      ball_spd_x *= -1;
+    }
+    if(ball_sprite.getPositionX() < 2.5 && ball_spd_x < 0) {
+      audio_engin.playEffect(res.se_ball_kabe);
+      ball_spd_x *= -1;
+    }
+    if(ball_sprite.getPositionY() > size.height - 46.5 && ball_spd_y > 0 ){
+      audio_engin.playEffect(res.se_ball_kabe);
+      ball_spd_y *= -1;
+    }
     if(ball_sprite.getPositionY() < 2.5 && ball_spd_y < 0 ){
+      audio_engin.playEffect(res.se_life_dm);
+      /*
+      this.dm_sprite = cc.Sprite.create();
+      this.dm_sprite.setTextureRect(cc.rect(0, 0, 400, 400));
+      this.dm_sprite.setColor(cc.color(248, 6, 6, 200));
+      this.dm_sprite.setPosition(cc.p(size.width * 0.5, size.height * 0.5));
+      ball_layer.addChild(this.dm_sprite,3);
+      this.dm_sprite.runAction(cc.Blink.create(1, 3));
+      */
       dm_life++;
+      //this.dm_flg = true;
       if (life == 0) {
         game_clear = false;
         resalt_timer = timer;
@@ -21,6 +43,7 @@ var Ball_Layer = cc.Layer.extend({
         resalt_life_dm = dm_life;
         cc.director.runScene(cc.TransitionFade.create(1, new R_resalt_Scene()));
       }else if(life > 0){
+        this.scheduleOnce(this.life_dm, 0.1);
         life--;
         lifelabel.setString("LIFE - " + life);
         ball_layer.removeChild(this);
@@ -30,6 +53,15 @@ var Ball_Layer = cc.Layer.extend({
         ball_spd_y = 1;
       }
     }
+    /*
+    if (this.dm_flg == true) {
+      this.dm_count++
+      if (this.dm_count == 100) {
+        ball_layer.removeChild(this.dm_sprite);
+        this.dm_flg = false;
+        this.dm_count = 0;
+      }
+    }*/
     ball_sprite.setPosition(cc.p(ball_sprite.getPositionX() + ball_spd_x, ball_sprite.getPositionY() + ball_spd_y));
   }
 });

@@ -27,30 +27,46 @@ var Scene_cehnge = cc.Layer.extend({
 
     switch (round_flg) {
       case 11:
+        audio_engin.stopMusic();
+        audio_engin.playMusic(res.bgm_nomal1, true);
         this.label1.setString("STAGE 1");
         this.label2.setString("ROUND 1");
         break;
       case 12:
-      this.label1.setString("STAGE 1");
-      this.label2.setString("ROUND 2");
+        this.label1.setString("STAGE 1");
+        this.label2.setString("ROUND 2");
         break;
       case 21:
-
+        audio_engin.stopMusic();
+        audio_engin.playMusic(res.bgm_nomal1, true);
+        this.label1.setString("STAGE 2");
+        this.label2.setString("ROUND 1");
         break;
       case 22:
-
+        this.label1.setString("STAGE 2");
+        this.label2.setString("ROUND 2");
         break;
       case 23:
-
+        audio_engin.stopMusic();
+        audio_engin.playMusic(res.bgm_ace, true);
+        this.label1.setString("STAGE 2");
+        this.label2.setString("ROUND 3");
         break;
       case 31:
-
+        audio_engin.stopMusic();
+        audio_engin.playMusic(res.bgm_nomal2, true);
+        this.label1.setString("STAGE 3");
+        this.label2.setString("ROUND 1");
         break;
       case 32:
-
+        this.label1.setString("STAGE 3");
+        this.label2.setString("ROUND 2");
         break;
       case 33:
-
+        audio_engin.stopMusic();
+        audio_engin.playMusic(res.bgm_boss, true);
+        this.label1.setString("STAGE 3");
+        this.label2.setString("ROUND 3");
         break;
       default:
     }
@@ -67,13 +83,13 @@ var Scene_cehnge = cc.Layer.extend({
         cc.director.runScene(new Stage1_2Scene());
         break;
       case 21:
-        //cc.director.runScene();
+        cc.director.runScene(new Stage2_1Scene());
         break;
       case 22:
-        //cc.director.runScene();
+        cc.director.runScene(new Stage2_2Scene());
         break;
       case 23:
-        //cc.director.runScene();
+        cc.director.runScene(new Stage2_3Scene());
         break;
       case 31:
         //cc.director.runScene();

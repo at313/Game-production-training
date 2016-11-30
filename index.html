@@ -10,6 +10,14 @@
     <script type="text/javascript" src="src/stage1/stage1_1.js" charset="UTF-8"></script>
     <script type="text/javascript" src="src/stage1/stage1_2.js" charset="UTF-8"></script>
     <script type="text/javascript" src="src/stage1/s1_resalt.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/stage2/stage2_1.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/stage2/stage2_2.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/stage2/stage2_3.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/stage2/s2_resalt.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/stage3/stage3_1.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/stage3/stage3_2.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/stage3/stage3_3.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/stage3/s3_resalt.js" charset="UTF-8"></script>
     <script type="text/javascript" src="src/player.js" charset="UTF-8"></script>
     <script type="text/javascript" src="src/ball.js" charset="UTF-8"></script>
     <script type="text/javascript" src="src/enemy.js" charset="UTF-8"></script>
@@ -17,6 +25,8 @@
     <script type="text/javascript" src="src/r-resalt.js" charset="UTF-8"></script>
     <script type="text/javascript" src="src/select.js" charset="UTF-8"></script>
     <script type="text/javascript" src="src/scenechenge.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="src/help.js" charset="UTF-8"></script>
+
 </head>
 <body>
     <canvas id="gameCanvas" ></canvas>
@@ -26,12 +36,10 @@
                   //load resources
                   // プログラムの画面全体を表示領域の画面に合わせる　Adjust viewport meta
                    cc.view.adjustViewPort(true);
-
                   //画面の縦横比をドットで指定する  ターゲットの解像度を指定し、ゲームキャンバスをブラウザのウインドサイズに合わせる
                   cc.view.setDesignResolutionSize(211,375,  cc.ResolutionPolicy.SHOW_ALL);
                   // 表示領域がリサイズされた場合、自動的にプログラムの画面をリサイズさせる
                   cc.view.resizeWithBrowserSize(true);
-
                   cc.LoaderScene.preload(g_resources, function () {
                        cc.director.runScene(new titleScene());
                   }, this);
