@@ -16,7 +16,7 @@ var select = cc.Layer.extend({
   ctor: function(){
    this._super();
    var size = cc.director.getWinSize();
-   if (audio_engin.isMusicPlaying == false) {
+   if (audio_engin.isMusicPlaying() == false) {
      audio_engin.playMusic(res.bgm_select2, true);
    }
 
