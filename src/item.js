@@ -19,7 +19,7 @@ var Item = cc.Sprite.extend({
   },
   onEnter: function(){
       this._super();
-      this.setPosition(Math.random() * 196 + 15, 375);
+      this.setPosition(Math.random() * 190 + 15, 375);
       var moveAction = cc.MoveTo.create(8, new cc.p(this.getPositionX(), -50));
       this.runAction(moveAction);
 
@@ -32,8 +32,10 @@ var Item = cc.Sprite.extend({
       audio_engin.playEffect(res.se_pw_up);
       switch (this.value) {
         case 1:
-          ball_type = 1;
-          ball_sprite.setTexture(res.ball2_png);
+          if (start_ball == true) {
+            ball_type = 1;
+            ball_sprite.setTexture(res.ball2_png);
+          }
           item_layer.removeChild(this);
           break;
         case 2:

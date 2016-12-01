@@ -85,7 +85,7 @@ var Enemy = cc.Sprite.extend({
       // 攻撃間隔設定
       if (this.shot_interval == true) {
         this.interval_count++;
-        if (this.interval_count == 100) {
+        if (this.interval_count == 120) {
           this.shot_interval = false;
           this.interval_count = 0;
         }
@@ -93,6 +93,10 @@ var Enemy = cc.Sprite.extend({
     },
     remove_en: function(){
       audio_engin.playEffect(res.se_en_ban);
+      var exp = new cc.ParticleSystem(res.exp_plist);
+      exp.setPosition(cc.p(this.getPositionX(), this.getPositionY()));
+      enemys_layer.addChild(exp, 5);
+      exp.setAutoRemoveOnFinish(true);
       enemys_layer.removeChild(this);
     }
 });
@@ -185,7 +189,7 @@ var Enemy_Ace = cc.Sprite.extend({
       // 攻撃間隔設定
       if (this.shot_interval == true) {
         this.interval_count++;
-        if (this.interval_count == 50) {
+        if (this.interval_count == 80) {
           this.shot_interval = false;
           this.interval_count = 0;
         }
@@ -196,8 +200,11 @@ var Enemy_Ace = cc.Sprite.extend({
     },
     remove_en: function(){
       audio_engin.playEffect(res.se_en_ban);
+      var exp = new cc.ParticleSystem(res.exp_plist);
+      exp.setPosition(cc.p(this.getPositionX(), this.getPositionY()));
+      enemys_layer.addChild(exp, 5);
+      exp.setAutoRemoveOnFinish(true);
       enemys_layer.removeChild(this);
-      audio_engin = cc.audioEngine;
       enemy_death++;
     }
 });
@@ -242,6 +249,10 @@ var Enemy_Boss = cc.Sprite.extend({
               if(ball_spd_y < 0) ball_spd_y -= 0.3;
               else ball_spd_y += 0.3;
             }
+            var exp = new cc.ParticleSystem(res.exp_plist);
+            exp.setPosition(cc.p(ball_sprite.getPositionX(), ball_sprite.getPositionY()));
+            enemys_layer.addChild(exp, 5);
+            exp.setAutoRemoveOnFinish(true);
             audio_engin.playEffect(res.se_dm);
             this.en_hp--;
         }
@@ -253,6 +264,10 @@ var Enemy_Boss = cc.Sprite.extend({
             if(ball_spd_y < 0) ball_spd_y -= 0.3;
             else ball_spd_y += 0.3;
           }
+          var exp = new cc.ParticleSystem(res.exp_plist);
+          exp.setPosition(cc.p(ball_sprite.getPositionX(), ball_sprite.getPositionY()));
+          enemys_layer.addChild(exp, 5);
+          exp.setAutoRemoveOnFinish(true);
           audio_engin.playEffect(res.se_dm);
           this.en_hp -= 2;
         }
@@ -262,6 +277,10 @@ var Enemy_Boss = cc.Sprite.extend({
         this.misail_Box = pl_misail.getBoundingBox();
         this.en_Box = this.getBoundingBox();
         if (cc.rectIntersectsRect(this.misail_Box, this.en_Box)) {
+          var exp = new cc.ParticleSystem(res.exp_plist);
+          exp.setPosition(cc.p(pl_misail.getPositionX(), pl_misail.getPositionY()));
+          enemys_layer.addChild(exp, 5);
+          exp.setAutoRemoveOnFinish(true);
           this.en_hp--;
           audio_engin.playEffect(res.se_dm);
           this.runAction(cc.Blink.create(0.5, 2));
@@ -272,7 +291,7 @@ var Enemy_Boss = cc.Sprite.extend({
       if (this.shot_interval1 == false) {
         // 攻撃発射処理1
         if (player_sprite.getPositionX() < 70) {
-          var en_shot1 = new Enemy_bullet_B(this.getPositionX(), this.getPositionY());
+          var en_shot1 = new Enemy_bullet_B(this.getPositionX() - 30, this.getPositionY());
           enemy_shot_layer.addChild(en_shot1);
           this.shot_interval1 = true;
         }
@@ -290,7 +309,7 @@ var Enemy_Boss = cc.Sprite.extend({
       if (this.shot_interval3 == false) {
         // 攻撃発射処理3
         if (140 < player_sprite.getPositionX()) {
-          var en_shot3 = new Enemy_bullet_B(this.getPositionX(), this.getPositionY());
+          var en_shot3 = new Enemy_bullet_B(this.getPositionX() + 30, this.getPositionY());
           enemy_shot_layer.addChild(en_shot3);
           this.shot_interval3 = true;
         }
@@ -324,6 +343,10 @@ var Enemy_Boss = cc.Sprite.extend({
     },
     remove_en: function(){
       audio_engin.playEffect(res.se_en_ban);
+      var exp = new cc.ParticleSystem(res.exp_L_plist);
+      exp.setPosition(cc.p(this.getPositionX(), this.getPositionY()));
+      enemys_layer.addChild(exp, 5);
+      exp.setAutoRemoveOnFinish(true);
       enemys_layer.removeChild(this);
       audio_engin = cc.audioEngine;
       enemy_death++;
@@ -350,9 +373,14 @@ var Enemy_bullet = cc.Sprite.extend({
     // プレイヤーとの当たり判定
     if (cc.rectIntersectsRect(this.pl_Box, this.en_shot_Box) && pl_dm_flg == false) {
       audio_engin.playEffect(res.se_dm);
+      var exp = new cc.ParticleSystem(res.exp_plist);
+      exp.setPosition(cc.p(this.getPositionX(), this.getPositionY()));
+      enemys_layer.addChild(exp, 5);
+      exp.setAutoRemoveOnFinish(true);
       player_sprite.runAction(cc.Blink.create(1, 5));
       pl_dm_flg = true;
       pl_dm_count++;
+      enemy_shot_layer.removeChild(this);
     }
     if (this.getPositionY() < -5) {
       enemy_shot_layer.removeChild(this);
@@ -379,9 +407,14 @@ var Enemy_bullet_B = cc.Sprite.extend({
     // プレイヤーとの当たり判定
     if (cc.rectIntersectsRect(this.pl_Box, this.en_shot_Box) && pl_dm_flg == false) {
       audio_engin.playEffect(res.se_dm);
+      var exp = new cc.ParticleSystem(res.exp_plist);
+      exp.setPosition(cc.p(this.getPositionX(), this.getPositionY()));
+      enemys_layer.addChild(exp, 5);
+      exp.setAutoRemoveOnFinish(true);
       player_sprite.runAction(cc.Blink.create(1, 5));
       pl_dm_flg = true;
       pl_dm_count++;
+      enemy_shot_layer.removeChild(this);
     }
     if (this.getPositionY() < -5) {
       enemy_shot_layer.removeChild(this);

@@ -1,4 +1,5 @@
 var Player_Layer = cc.Layer.extend({
+  pl_m: null,
   pl_Box: null,
   damege_count: null,
   ctor: function(){
@@ -12,7 +13,14 @@ var Player_Layer = cc.Layer.extend({
 
     this.damege_count = 0;
 
-    this.addChild(player_sprite);
+    this.addChild(player_sprite, 1);
+
+    this.pl_m = new cc.Sprite.create(res.pl_m_png);
+    this.pl_m.setPosition(cc.p(player_sprite.getPositionX(), player_sprite.getPositionY()));
+
+    this.addChild(this.pl_m, 0);
+
+    this.pl_m.setVisible(false);
 
     cc.eventManager.addListener({
           event: cc.EventListener.TOUCH_ONE_BY_ONE,
@@ -25,6 +33,13 @@ var Player_Layer = cc.Layer.extend({
       this.scheduleUpdate();
     },
     update: function(dt){
+      if (pl_atk == true) {
+        this.pl_m.setVisible(true);
+      }else {
+        this.pl_m.setVisible(false);
+      }
+
+      this.pl_m.setPosition(cc.p(player_sprite.getPositionX(), player_sprite.getPositionY()));
       if (doubl_tap == true) {
         double_count++;
         if (double_count == 50) {
@@ -33,7 +48,7 @@ var Player_Layer = cc.Layer.extend({
       }
       if (pl_dm_flg == true) {
         this.damege_count++;
-        if (this.damege_count == 100) {
+        if (this.damege_count == 80) {
           pl_dm_flg = false;
           this.damege_count = 0;
         }
@@ -75,6 +90,10 @@ var Player_Layer = cc.Layer.extend({
         var vertical = (player_sprite.getPositionY() - 12) - ball_sprite.getPositionY();
         if ((horizontal * horizontal) + (vertical * vertical) <= (38 * 38)) {
           audio_engin.playEffect(res.se_ref);
+          var ref = new cc.ParticleSystem(res.ref_plist);
+          ref.setPosition(cc.p(player_sprite.getPositionX(), player_sprite.getPositionY()));
+          enemys_layer.addChild(ref, 5);
+          ref.setAutoRemoveOnFinish(true);
           if(ball_spd_y < 0){
             if(player_sprite.getPositionX() < ball_sprite.getPositionX() && ball_spd_x < 0)
               ball_spd_x *= -1;

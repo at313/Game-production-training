@@ -28,6 +28,7 @@ var res = {
   // メイン
   chenge_back_png: "res/IMG/stage_chenge.png",
   player_png: "res/IMG/player_base2.png",
+  pl_m_png: "res/IMG/player_m.png",
   reflection_png: "res/IMG/test_reflection.png",
   satge_back_png: "res/IMG/stage_base.png",
   up_design_png: "res/IMG/test_up_design.png",
@@ -41,6 +42,9 @@ var res = {
   ball2_png: "res/IMG/test_bullet2.png",
   pl_atk_png: "res/IMG/misairu.png",
   en_shot_png: "res/IMG/en_shot.png",
+  exp_plist: "res/IMG/particle_exp.plist",
+  exp_L_plist: "res/IMG/particle_exp_L.plist",
+  ref_plist: "res/IMG/particle_ref.plist",
   // ラウンドリザルト
   r_res_back_png: "res/IMG/round_res.png",
   // ステージリザルト

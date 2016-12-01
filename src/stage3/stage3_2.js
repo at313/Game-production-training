@@ -1,6 +1,8 @@
 var Stage3_2Scene = cc.Scene.extend({
   onEnter:function () {
         this._super();
+        size = cc.director.getWinSize();
+        audio_engin = cc.audioEngine;
         stage3_2gamelayer = new stage3_2game();
         stage3_2gamelayer.init();
         this.addChild(stage3_2gamelayer);
@@ -77,16 +79,15 @@ var stage3_2game = cc.Layer.extend({
     enemys_layer = cc.Layer.create();
     enemy[0] = new Enemy(size.width * 0.6, size.height * 0.3, 50, -20, 2, 2);
     enemys_layer.addChild(enemy[0]);
-    /*
     enemy[1] = new Enemy(size.width * 0.4, size.height * 0.42, 90, -50, 3.3, 3.3);
     enemys_layer.addChild(enemy[1]);
-    enemy[2] = new Enemy(size.width * 0.2, size.height * 0.54, 40, -20, 2.5, 2.5);
+    enemy[2] = new Enemy_Ace(size.width * 0.2, size.height * 0.54, 90, -20, 2.5, 2.5);
     enemys_layer.addChild(enemy[2]);
-    enemy[3] = new Enemy(size.width * 0.8, size.height * 0.66, -100, 10, 3.7, 3.7);
+    enemy[3] = new Enemy_Ace(size.width * 0.8, size.height * 0.66, -110, 10, 3.7, 3.7);
     enemys_layer.addChild(enemy[3]);
-    enemy[4] = new Enemy(size.width * 0.3, size.height * 0.78, 100, -10, 2.9, 2.9);
+    enemy[4] = new Enemy_Ace(size.width * 0.3, size.height * 0.78, 100, -10, 2.9, 2.9);
     enemys_layer.addChild(enemy[4]);
-    */
+
     this.addChild(enemys_layer, 2);
 
     // アイテムレイヤー
