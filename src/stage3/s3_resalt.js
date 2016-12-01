@@ -56,7 +56,7 @@ audio_engin = cc.audioEngine;
         break;
       case 2:
       this.r1_resalt_label.setString("C");
-      this.r1_resalt_label.setColor(cc.color(25, 135, 22, 255));
+      this.r1_resalt_label.setColor(cc.color(82, 162, 197, 255));
         break;
       case 1:
       this.r1_resalt_label.setString("D");
@@ -79,7 +79,7 @@ audio_engin = cc.audioEngine;
         break;
       case 2:
       this.r2_resalt_label.setString("C");
-      this.r2_resalt_label.setColor(cc.color(25, 135, 22, 255));
+      this.r2_resalt_label.setColor(cc.color(82, 162, 197, 255));
         break;
       case 1:
       this.r2_resalt_label.setString("D");
@@ -102,7 +102,7 @@ audio_engin = cc.audioEngine;
         break;
       case 2:
       this.r3_resalt_label.setString("C");
-      this.r3_resalt_label.setColor(cc.color(25, 135, 22, 255));
+      this.r3_resalt_label.setColor(cc.color(82, 162, 197, 255));
         break;
       case 1:
       this.r3_resalt_label.setString("D");
@@ -130,7 +130,7 @@ audio_engin = cc.audioEngine;
         break;
       case 2:
       this.s_resalt_label.setString("C");
-      this.s_resalt_label.setColor(cc.color(25, 135, 22, 255));
+      this.s_resalt_label.setColor(cc.color(82, 162, 197, 255));
       //stage3_on = true;
         break;
     }

@@ -15,11 +15,18 @@ var select_Scene = cc.Scene.extend({
 var select = cc.Layer.extend({
   ctor: function(){
    this._super();
+   stage1_r1_rank = null;
+   stage1_r2_rank = null;
+   stage2_r1_rank = null;
+   stage2_r2_rank = null;
+   stage2_r3_rank = null;
+   stage3_r1_rank = null;
+   stage3_r2_rank = null;
+   stage3_r3_rank = null;
    var size = cc.director.getWinSize();
    if (audio_engin.isMusicPlaying() == false) {
      audio_engin.playMusic(res.bgm_select2, true);
    }
-
 
    var select_back = new cc.Sprite(res.select_back_png);
    select_back.setPosition(cc.p(size.width * 0.5, size.height * 0.5));
