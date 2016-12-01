@@ -43,15 +43,15 @@ var R_resalt = cc.Layer.extend({
     if (game_clear == true) {
       if (resalt_life_dm < 3) {
         if (resalt_pl_dm < 5) {
-          if (resalt_timer.toFixed(2) < 45.00) {
+          if (resalt_timer.toFixed(2) < 25.00) {
             this.resalt_rank_label.setString("S");
             this.resalt_rank_label.setColor(cc.color(255, 255, 0, 255));
             resalt_rank = 5;
-          }else if (resalt_timer.toFixed(2) < 60.00) {
+          }else if (resalt_timer.toFixed(2) < 30.00) {
             this.resalt_rank_label.setString("A");
             this.resalt_rank_label.setColor(cc.color(255, 0, 0, 255));
             resalt_rank = 4;
-          }else if (resalt_timer.toFixed(2) < 90.00) {
+          }else if (resalt_timer.toFixed(2) < 45.00) {
             this.resalt_rank_label.setString("B");
             this.resalt_rank_label.setColor(cc.color(229, 69, 0, 255));
             resalt_rank = 3;
@@ -61,11 +61,11 @@ var R_resalt = cc.Layer.extend({
             resalt_rank = 2;
           }
         }else if (resalt_pl_dm < 7) {
-          if (resalt_timer.toFixed(2) < 60.00) {
+          if (resalt_timer.toFixed(2) < 30.00) {
             this.resalt_rank_label.setString("A");
             this.resalt_rank_label.setColor(cc.color(255, 0, 0, 255));
             resalt_rank = 4;
-          }else if (resalt_timer.toFixed(2) < 90.00) {
+          }else if (resalt_timer.toFixed(2) < 45.00) {
             this.resalt_rank_label.setString("B");
             this.resalt_rank_label.setColor(cc.color(229, 69, 0, 255));
             resalt_rank = 3;
@@ -81,11 +81,11 @@ var R_resalt = cc.Layer.extend({
         }
       }else if(resalt_life_dm < 4){
         if (resalt_pl_dm < 7) {
-          if (resalt_timer.toFixed(2) < 60.00) {
+          if (resalt_timer.toFixed(2) < 30.00) {
             this.resalt_rank_label.setString("A");
             this.resalt_rank_label.setColor(cc.color(255, 0, 0, 255));
             resalt_rank = 4;
-          }else if (resalt_timer.toFixed(2) < 90.00) {
+          }else if (resalt_timer.toFixed(2) < 45.00) {
             this.resalt_rank_label.setString("B");
             this.resalt_rank_label.setColor(cc.color(229, 69, 0, 255));
             resalt_rank = 3;
@@ -97,7 +97,7 @@ var R_resalt = cc.Layer.extend({
         }
       }else if(resalt_life_dm < 6){
         if (resalt_pl_dm < 7) {
-          if (resalt_timer.toFixed(2) < 90.00) {
+          if (resalt_timer.toFixed(2) < 45.00) {
             this.resalt_rank_label.setString("B");
             this.resalt_rank_label.setColor(cc.color(229, 69, 0, 255));
             resalt_rank = 3;

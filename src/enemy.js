@@ -318,7 +318,7 @@ var Enemy_Boss = cc.Sprite.extend({
       }
       if (this.shot_interval2 == true) {
         this.interval_count2++;
-        if (this.interval_count2 == 200) {
+        if (this.interval_count2 == 150) {
           this.shot_interval2 = false;
           this.interval_count2 = 0;
         }

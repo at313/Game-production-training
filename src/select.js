@@ -113,6 +113,21 @@ var select = cc.Layer.extend({
 
    cc.eventManager.addListener(touchListener_select, this);
 
+   cc.eventManager.addListener({
+     event: cc.EventListener.KEYBOARD,
+     onKeyPressed: function(keyCode, event){
+       if(keyCode == 82) {
+         stage2_on = true;
+         stage3_on = true;
+         stage2_B.setTexture(res.button7_png);
+         stage3_B.setTexture(res.button13_png);
+         console.log("Debug_Key");
+       }
+     },
+     onKeyReleased: function(keyCode, event) {
+     },
+   }, this);
+
  }
 });
 
