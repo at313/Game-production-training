@@ -102,7 +102,7 @@ var Enemy = cc.Sprite.extend({
 });
 
 var Enemy_Ace = cc.Sprite.extend({
-  en_hp: 3,
+  en_hp: 2,
   def_x: null,
   def_y: null,
   move_x1: null,
@@ -210,7 +210,7 @@ var Enemy_Ace = cc.Sprite.extend({
 });
 
 var Enemy_Boss = cc.Sprite.extend({
-  en_hp: 15,
+  en_hp: 7,
   def_x: null,
   def_y: null,
   en_Box: null,
@@ -263,6 +263,7 @@ var Enemy_Boss = cc.Sprite.extend({
             }else if (ball_type == 1) {
               this.en_hp -= 2;
             }
+            console.log(this.en_hp);
         }
       }
       if (misail == true) {

@@ -94,6 +94,10 @@ var R_resalt = cc.Layer.extend({
             this.resalt_rank_label.setColor(cc.color(82, 162, 197, 255));
             resalt_rank = 2;
           }
+        }else {
+          this.resalt_rank_label.setString("C");
+          this.resalt_rank_label.setColor(cc.color(82, 162, 197, 255));
+          resalt_rank = 2;
         }
       }else if(resalt_life_dm < 5){
         if (resalt_pl_dm < 7) {
@@ -106,6 +110,10 @@ var R_resalt = cc.Layer.extend({
             this.resalt_rank_label.setColor(cc.color(82, 162, 197, 255));
             resalt_rank = 2;
           }
+        }else {
+          this.resalt_rank_label.setString("C");
+          this.resalt_rank_label.setColor(cc.color(82, 162, 197, 255));
+          resalt_rank = 2;
         }
       }else {
         this.resalt_rank_label.setString("C");
