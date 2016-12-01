@@ -1,8 +1,6 @@
 var Stage1_1Scene = cc.Scene.extend({
   onEnter:function () {
         this._super();
-        size = cc.director.getWinSize();
-        audio_engin = cc.audioEngine;
         stage1_1gamelayer = new stage1_1game();
         stage1_1gamelayer.init();
         this.addChild(stage1_1gamelayer);

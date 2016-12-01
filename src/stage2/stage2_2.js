@@ -1,8 +1,6 @@
 var Stage2_2Scene = cc.Scene.extend({
   onEnter:function () {
         this._super();
-        size = cc.director.getWinSize();
-        audio_engin = cc.audioEngine;
         stage2_2gamelayer = new stage2_2game();
         stage2_2gamelayer.init();
         this.addChild(stage2_2gamelayer);
@@ -87,7 +85,7 @@ var stage2_2game = cc.Layer.extend({
     enemys_layer.addChild(enemy[3]);
     enemy[4] = new Enemy(size.width * 0.3, size.height * 0.78, 100, -10, 2.9, 2.9);
     enemys_layer.addChild(enemy[4]);
-    
+
     this.addChild(enemys_layer, 2);
 
     // アイテムレイヤー

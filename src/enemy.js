@@ -85,7 +85,7 @@ var Enemy = cc.Sprite.extend({
       // 攻撃間隔設定
       if (this.shot_interval == true) {
         this.interval_count++;
-        if (this.interval_count == 120) {
+        if (this.interval_count == 150) {
           this.shot_interval = false;
           this.interval_count = 0;
         }
@@ -189,7 +189,7 @@ var Enemy_Ace = cc.Sprite.extend({
       // 攻撃間隔設定
       if (this.shot_interval == true) {
         this.interval_count++;
-        if (this.interval_count == 80) {
+        if (this.interval_count == 120) {
           this.shot_interval = false;
           this.interval_count = 0;
         }
@@ -241,7 +241,11 @@ var Enemy_Boss = cc.Sprite.extend({
       // ボールとの当たり判定
       this.ball_Box = ball_sprite.getBoundingBox();
       this.en_Box = this.getBoundingBox();
-      if (cc.rectIntersectsRect(this.ball_Box, this.en_Box) && ball_type == 0) {
+      if (cc.rectIntersectsRect(this.ball_Box, this.en_Box)) {
+          if(this.getPositionX() < ball_sprite.getPositionX() && ball_spd_x < 0)
+            ball_spd_x *= -1;
+            else if(this.getPositionX() > ball_sprite.getPositionX() && ball_spd_x > 0)
+            ball_spd_x *= -1;
             ball_spd_y *= -1;
             if (Math.abs(ball_spd_x) < 3.5 && Math.abs(ball_spd_y) < 3.5) {
               if(ball_spd_x < 0) ball_spd_x -= 0.3;
@@ -254,22 +258,11 @@ var Enemy_Boss = cc.Sprite.extend({
             enemys_layer.addChild(exp, 5);
             exp.setAutoRemoveOnFinish(true);
             audio_engin.playEffect(res.se_dm);
-            this.en_hp--;
-        }
-        if (cc.rectIntersectsRect(this.ball_Box, this.en_Box) && ball_type == 1) {
-          ball_spd_y *= -1;
-          if (Math.abs(ball_spd_x) < 3.5 && Math.abs(ball_spd_y) < 3.5) {
-            if(ball_spd_x < 0) ball_spd_x -= 0.3;
-            else ball_spd_x += 0.3;
-            if(ball_spd_y < 0) ball_spd_y -= 0.3;
-            else ball_spd_y += 0.3;
-          }
-          var exp = new cc.ParticleSystem(res.exp_plist);
-          exp.setPosition(cc.p(ball_sprite.getPositionX(), ball_sprite.getPositionY()));
-          enemys_layer.addChild(exp, 5);
-          exp.setAutoRemoveOnFinish(true);
-          audio_engin.playEffect(res.se_dm);
-          this.en_hp -= 2;
+            if (ball_type == 0) {
+              this.en_hp--;
+            }else if (ball_type == 1) {
+              this.en_hp -= 2;
+            }
         }
       }
       if (misail == true) {

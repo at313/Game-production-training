@@ -16,7 +16,10 @@ var select = cc.Layer.extend({
   ctor: function(){
    this._super();
    var size = cc.director.getWinSize();
-   audio_engin.playMusic(res.bgm_select2, true);
+   if (audio_engin.isMusicPlaying = false) {
+     audio_engin.playMusic(res.bgm_select2, true);
+   }
+
 
    var select_back = new cc.Sprite(res.select_back_png);
    select_back.setPosition(cc.p(size.width * 0.5, size.height * 0.5));
@@ -109,6 +112,7 @@ var select = cc.Layer.extend({
    }
 
    cc.eventManager.addListener(touchListener_select, this);
+
  }
 });
 

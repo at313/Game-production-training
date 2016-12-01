@@ -25,6 +25,7 @@ var Ball_Layer = cc.Layer.extend({
       dm_life++;
       if (life == 0) {
         audio_engin.playEffect(res.se_life_dm);
+        ball_layer.removeChild(this);
         game_clear = false;
         resalt_timer = timer;
         resalt_life = life;
