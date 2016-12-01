@@ -137,6 +137,7 @@ audio_engin = cc.audioEngine;
     if (stage3_r1_rank == 1 || stage3_r2_rank == 1 || stage3_r3_rank == 1) {
       this.s_resalt_label.setString("D");
       this.s_resalt_label.setColor(cc.color(31, 30, 71, 255));
+      stage_rank_num = 1;
     }
 
     if (stage3_rank != null) {

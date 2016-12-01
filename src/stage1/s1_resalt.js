@@ -108,6 +108,7 @@ var S1_resalt = cc.Layer.extend({
     if (stage1_r1_rank == 1 || stage1_r2_rank == 1) {
       this.s_resalt_label.setString("D");
       this.s_resalt_label.setColor(cc.color(31, 30, 71, 255));
+      stage_rank_num = 1;
     }
 
     if (stage1_rank != null) {

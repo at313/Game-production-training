@@ -76,9 +76,9 @@ var stage3_3game = cc.Layer.extend({
 
     // エネミー表示
     enemys_layer = cc.Layer.create();
-    enemy[0] = new Enemy_Ace(size.width * 0.8, size.height * 0.3, -110, 10, 3.7, 3.7);
+    enemy[0] = new Enemy_Ace(size.width * 0.8, size.height * 0.3, -110, 10, 1.5, 1.5);
     enemys_layer.addChild(enemy[0]);
-    enemy[1] = new Enemy_Ace(size.width * 0.3, size.height * 0.5, 100, -10, 2.9, 2.9);
+    enemy[1] = new Enemy_Ace(size.width * 0.3, size.height * 0.5, 100, -10, 1.5, 1.5);
     enemys_layer.addChild(enemy[1]);
     enemy[2] = new Enemy_Boss(size.width * 0.5, 280);
     enemys_layer.addChild(enemy[2]);

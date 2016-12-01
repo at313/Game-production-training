@@ -311,21 +311,21 @@ var Enemy_Boss = cc.Sprite.extend({
       // 攻撃間隔設定
       if (this.shot_interval1 == true) {
         this.interval_count1++;
-        if (this.interval_count1 == 200) {
+        if (this.interval_count1 == 150) {
           this.shot_interval1 = false;
           this.interval_count1 = 0;
         }
       }
       if (this.shot_interval2 == true) {
         this.interval_count2++;
-        if (this.interval_count2 == 150) {
+        if (this.interval_count2 == 120) {
           this.shot_interval2 = false;
           this.interval_count2 = 0;
         }
       }
       if (this.shot_interval3 == true) {
         this.interval_count3++;
-        if (this.interval_count3 == 200) {
+        if (this.interval_count3 == 150) {
           this.shot_interval3 = false;
           this.interval_count3 = 0;
         }

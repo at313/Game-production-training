@@ -83,7 +83,7 @@ var stage3_1game = cc.Layer.extend({
     enemys_layer.addChild(enemy[2]);
     enemy[3] = new Enemy(size.width * 0.8, size.height * 0.66, -100, 10, 3.7, 3.7);
     enemys_layer.addChild(enemy[3]);
-    enemy[4] = new Enemy_Ace(size.width * 0.3, size.height * 0.78, 100, -10, 2.9, 2.9);
+    enemy[4] = new Enemy_Ace(size.width * 0.3, size.height * 0.78, 100, -10, 1.5, 1.5);
     enemys_layer.addChild(enemy[4]);
 
     this.addChild(enemys_layer, 2);
