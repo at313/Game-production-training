@@ -24,7 +24,19 @@ var res = {
   button19_png: "res/IMG/button19.png",
   button20_png: "res/IMG/button20.png",
   button21_png: "res/IMG/help.png",
-  // 操作説明
+  button22_png: "res/IMG/sozai.png",
+  // 操作説明・素材提供
+  help_01_png: "res/IMG/farst_tach.png",
+  help_02_pmg: "res/IMG/move.png",
+  help_03_png: "res/IMG/ref_1.png",
+  help_04_png: "res/IMG/ref_2.png",
+  help_05_png: "res/IMG/r_resa.png",
+  help_06_png: "res/IMG/s_resa.png",
+  help_07_png: "res/IMG/item.png",
+  help_08_png: "res/IMG/en.png",
+  tugi_button: "res/IMG/tugi.png",
+  mae_button: "res/IMG/mae.png",
+  sozai_png: "res/IMG/sozai_pg.png",
   // メイン
   chenge_back_png: "res/IMG/stage_chenge.png",
   player_png: "res/IMG/player_base2.png",

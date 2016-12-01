@@ -2,6 +2,7 @@ var stage1_B;
 var stage2_B;
 var stage3_B;
 var help_B;
+var sozai_B;
 
 var select_Scene = cc.Scene.extend({
   onEnter: function(){
@@ -15,7 +16,6 @@ var select = cc.Layer.extend({
   ctor: function(){
    this._super();
    var size = cc.director.getWinSize();
-   audio_engin.stopMusic();
    audio_engin.playMusic(res.bgm_select2, true);
 
    var select_back = new cc.Sprite(res.select_back_png);
@@ -35,6 +35,14 @@ var select = cc.Layer.extend({
    stage3_B = new cc.Sprite(res.button13_png);
    stage3_B.setPosition(cc.p(size.width * 0.5, size.height * 0.4));
    this.addChild(stage3_B);
+
+   help_B = new cc.Sprite(res.button21_png);
+   help_B.setPosition(cc.p(size.width * 0.2, size.height * 0.17));
+   this.addChild(help_B);
+
+   sozai_B = new cc.Sprite(res.button22_png);
+   sozai_B.setPosition(cc.p(size.width * 0.8, size.height * 0.17));
+   this.addChild(sozai_B);
 
    if (stage2_on == false) {
      stage2_B.setTexture(res.button19_png);
@@ -109,16 +117,20 @@ var touchListener_select = cc.EventListener.create({
   stage2_Box: null,
   stage3_Box: null,
   help_Box: null,
+  sozai_Box: null,
   stage1_flg: false,
   stage2_flg: false,
   stage3_flg: false,
   help_flg: false,
+  sozai_flg: false,
   event: cc.EventListener.TOUCH_ONE_BY_ONE,
   swallowTouches: true,
   onTouchBegan: function(touch, event){
     this.stage1_Box = stage1_B.getBoundingBox();
     this.stage2_Box = stage2_B.getBoundingBox();
     this.stage3_Box = stage3_B.getBoundingBox();
+    this.help_Box = help_B.getBoundingBox();
+    this.sozai_Box = sozai_B.getBoundingBox();
     if (cc.rectContainsPoint(this.stage1_Box, touch.getLocation())){
       stage1_B.setOpacity(120);
       this.stage1_flg = true;
@@ -131,6 +143,14 @@ var touchListener_select = cc.EventListener.create({
       stage3_B.setOpacity(120);
       this.stage3_flg = true;
     }
+    if (cc.rectContainsPoint(this.help_Box, touch.getLocation())){
+      help_B.setOpacity(120);
+      this.help_flg = true;
+    }
+    if (cc.rectContainsPoint(this.sozai_Box, touch.getLocation())){
+      sozai_B.setOpacity(120);
+      this.sozai_flg = true;
+    }
     return true;
    },
   onTouchMoved: function(touch, event){
@@ -139,6 +159,8 @@ var touchListener_select = cc.EventListener.create({
     stage1_B.setOpacity(255);
     stage2_B.setOpacity(255);
     stage3_B.setOpacity(255);
+    help_B.setOpacity(255);
+    sozai_B.setOpacity(255);
     if (this.stage1_flg == true) {
       round_flg = 11;
       audio_engin.playEffect(res.se_button);
@@ -156,6 +178,16 @@ var touchListener_select = cc.EventListener.create({
       audio_engin.playEffect(res.se_button);
       cc.director.runScene(cc.TransitionFade.create(1, new Chenge_Scene()));
       this.stage3_flg = false;
+    }
+    if (this.help_flg == true) {
+      audio_engin.playEffect(res.se_button);
+      cc.director.runScene(cc.TransitionFade.create(1, new help_Scene()));
+      this.help_flg = false;
+    }
+    if (this.sozai_flg == true) {
+      audio_engin.playEffect(res.se_button);
+      cc.director.runScene(cc.TransitionFade.create(1, new sozai_Scene()));
+      this.sozai_flg = false;
     }
   }
 });

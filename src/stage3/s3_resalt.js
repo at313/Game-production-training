@@ -188,6 +188,7 @@ var touchListener_s3_resalt = cc.EventListener.create({
   },
   onTouchEnded: function(touch, event){
     if (s3_chenge_flg == true) {
+      audio_engin.stopMusic();
       cc.director.runScene(cc.TransitionFade.create(1, new select_Scene()));
     }
   }
