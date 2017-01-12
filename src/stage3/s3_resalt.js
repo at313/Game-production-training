@@ -16,7 +16,8 @@ var S3_resalt = cc.Layer.extend({
   s_resalt_label: null,
   ctor: function(){
     this._super();
-audio_engin = cc.audioEngine;
+    s3_chenge_flg = false;
+    audio_engin = cc.audioEngine;
     var s1_back = cc.Sprite.create(res.s_res_back1_png);
     s1_back.setPosition(cc.p(size.width * 0.5, size.height * 0.5));
     this.addChild(s1_back);

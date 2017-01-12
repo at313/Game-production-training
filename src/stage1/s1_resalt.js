@@ -15,6 +15,7 @@ var S1_resalt = cc.Layer.extend({
   s_resalt_label: null,
   ctor: function(){
     this._super();
+    s1_chenge_flg = false;
 
     var s1_back = cc.Sprite.create(res.s_res_back2_png);
     s1_back.setPosition(cc.p(size.width * 0.5, size.height * 0.5));

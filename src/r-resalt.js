@@ -254,9 +254,3 @@ var R_resalt = cc.Layer.extend({
     }
   }
 });
-
-var touchListener_r_resalt = cc.EventListener.create({
-  event: cc.EventListener.TOUCH_ONE_BY_ONE,
-  swallowTouches: true,
-
-});
