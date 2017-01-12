@@ -72,16 +72,16 @@ var res = {
   bgm_ace: "res/BGM/ace_enemy.mp3",
   bgm_boss: "res/BGM/boss_enemy.mp3",
   // SE
-  se_en_ban: "res/SE/en_ban.wav",
-  se_ref: "res/SE/reflect.wav",
-  se_misail: "res/SE/misail.wav",
-  se_dm: "res/SE/pl_dm.wav",
-  se_life_dm: "res/SE/life_dm.wav",
-  se_ball_kabe: "res/SE/kabe_ref.wav",
-  se_pw_up: "res/SE/pw_up.wav",
-  se_button: "res/SE/button.wav",
-  se_res1: "res/SE/res1.wav",
-  se_res2: "res/SE/res2.wav"
+  se_en_ban: "res/SE/en_ban.mp3",
+  se_ref: "res/SE/reflect.mp3",
+  se_misail: "res/SE/misail.mp3",
+  se_dm: "res/SE/pl_dm.mp3",
+  se_life_dm: "res/SE/life_dm.mp3",
+  se_ball_kabe: "res/SE/kabe_ref.mp3",
+  se_pw_up: "res/SE/pw_up.mp3",
+  se_button: "res/SE/button.mp3",
+  se_res1: "res/SE/res1.mp3",
+  se_res2: "res/SE/res2.mp3"
 };
 
 var g_resources = [];
